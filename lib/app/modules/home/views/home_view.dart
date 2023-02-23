@@ -15,11 +15,9 @@ class HomeView extends GetView<HomeController> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Wrap(
-              runAlignment: WrapAlignment.center,
-              alignment: WrapAlignment.center,
               crossAxisAlignment: WrapCrossAlignment.center,
               spacing: 10.0,
               runSpacing: 10.0,
@@ -58,6 +56,27 @@ class HomeView extends GetView<HomeController> {
                     ],
                     child: Center(
                         child: Text('বিবিধ ',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Colors.white,
+                            ))),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed('/calculation');
+                  },
+                  child: Glass_card(
+                    height: 120,
+                    width: MediaQuery.of(context).size.width / 2 - 20,
+                    gredientColor: [
+                      Colors.deepPurple.shade800,
+                      Color(0xff5BB318),
+                    ],
+                    child: Center(
+                        child: Text('ভূমি পরিমাপ ক্যালকুলেটর',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,

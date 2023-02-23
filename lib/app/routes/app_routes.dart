@@ -9,6 +9,7 @@ abstract class Routes {
   static const EXTRA = _Paths.EXTRA;
   static const UNITS = _Paths.UNITS;
   static const WORDMEANING = _Paths.WORDMEANING;
+  static const CALCULATION = _Paths.CALCULATION;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const EXTRA = '/extra';
   static const UNITS = '/units';
   static const WORDMEANING = '/word_meaning';
+  static const CALCULATION = '/calculation';
 }

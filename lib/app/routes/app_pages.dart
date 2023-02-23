@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:vumi/app/modules/calculation/bindings/calculation_binding.dart';
+import 'package:vumi/app/modules/calculation/views/calculation_view.dart';
 import 'package:vumi/app/modules/dolil_registration/bindings/dolil_registration_binding.dart';
 import 'package:vumi/app/modules/dolil_registration/views/dolil_registration_view.dart';
 import 'package:vumi/app/modules/extra/bindings/extra_binding.dart';
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.WORDMEANING,
       page: () => WordmeaningView(),
       binding: WordmeaningBinding(),
+    ),
+    GetPage(
+      name: _Paths.CALCULATION,
+      page: () => CalculationView(),
+      binding: CalculationBinding(),
     ),
   ];
 }

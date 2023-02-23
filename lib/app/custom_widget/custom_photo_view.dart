@@ -9,23 +9,30 @@ void ZoomImage(BuildContext context, String url) {
     context: context,
     barrierLabel: "Barrier",
     barrierDismissible: true,
-    transitionDuration: Duration(milliseconds: 700),
+    transitionDuration: Duration(milliseconds: 550),
     pageBuilder: (_, __, ___) {
       return Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.black54.withOpacity(0.5),
+          // backgroundColor: Colors.grey.withOpacity(0.5),
           leading: IconButton(
-              onPressed: () => Get.back(), icon: Icon(Icons.arrow_back_ios)),
+              onPressed: () => Get.back(),
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              )),
         ),
         body: Center(
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: PhotoView(
+              enableRotation: true,
               imageProvider: AssetImage(image),
+              minScale: PhotoViewComputedScale.contained * 0.8,
+              maxScale: PhotoViewComputedScale.contained * 4,
               backgroundDecoration: BoxDecoration(
-                color: Colors.black54.withOpacity(0.5),
+                color: Colors.grey.withOpacity(0.5),
               ),
             ),
           ),

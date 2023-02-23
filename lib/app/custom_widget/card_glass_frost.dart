@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Glass_card extends StatelessWidget {
   final double height, width, borderRadius;
@@ -21,14 +22,15 @@ class Glass_card extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      width: width,
+      width: Get.width < 720 ? width : width / 2,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(25),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
           child: Container(
+            padding: EdgeInsets.all(5),
             height: height,
-            width: width,
+            width: Get.width < 720 ? width : width / 2,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
