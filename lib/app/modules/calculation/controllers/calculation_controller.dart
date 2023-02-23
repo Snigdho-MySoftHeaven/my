@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CalculationController extends GetxController {
   //TODO: Implement CalculationController
@@ -43,6 +44,12 @@ class CalculationController extends GetxController {
     area.value = 0.0;
   }
 
+  formattobn(var s) {
+    Intl.defaultLocale = 'bn_BD';
+    var f = NumberFormat.compact(locale: 'bn_BD');
+    return f.format(s);
+  }
+
   @override
   void onClose() {}
   void calculateArea() {
@@ -55,9 +62,9 @@ class CalculationController extends GetxController {
       double w = (w1 + w2) / 2;
       double a = h * w;
       area.value = a;
-      areapersent.value = (a / 435.6).toPrecision(10);
-      areaperbigha.value = (a / 14400).toPrecision(10);
-      areaperkatha.value = (a / 720).toPrecision(10);
+      areapersent.value = (a / 435.6).toPrecision(4);
+      areaperbigha.value = (a / 14400).toPrecision(4);
+      areaperkatha.value = (a / 720).toPrecision(4);
     }
   }
 }
