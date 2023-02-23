@@ -1,0 +1,6 @@
+package org.vumi.vumi
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
