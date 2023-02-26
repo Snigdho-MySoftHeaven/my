@@ -21,7 +21,6 @@ Future<void> main() async {
       locale: Locale('bn', 'BD'),
       supportedLocales: [
         Locale('en', 'US'),
-        Locale('es', 'ES'),
         Locale('bn', 'BD'),
       ],
       debugShowCheckedModeBanner: false,

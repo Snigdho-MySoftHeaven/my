@@ -87,6 +87,27 @@ class HomeView extends GetView<HomeController> {
                 ),
                 InkWell(
                   onTap: () {
+                    Get.toNamed('/qr_code');
+                  },
+                  child: Glass_card(
+                    height: 120,
+                    width: MediaQuery.of(context).size.width / 2 - 20,
+                    gredientColor: [
+                      Colors.deepPurple.shade800,
+                      Color(0xff5BB318),
+                    ],
+                    child: Center(
+                        child: Text('Qr Code',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Colors.white,
+                            ))),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
                     Get.toNamed('/settings');
                   },
                   child: Glass_card(

@@ -1,32 +1,52 @@
 import 'package:get/get.dart';
 
-List<String> keyList = [];
+final count = 0.obs;
+List<String> mykeyList = [];
+List<List<String>> keyList = [];
 void liststring(String s) {
   keyList = [];
-  s.split('</h2>').forEach((element) {
-    if (element.contains('<h2>')) {
-      keyList.add(element);
-    } else {
-      element.split('<p>').forEach((element) {
-        if (element.contains('</p>')) {
-          keyList.add(element);
-        } else {
-          element.split('<br>').forEach((element) {
-            if (element.contains('</br>')) {
-              keyList.add(element);
-            } else {
-              element.split('<h3>').forEach((element) {
-                if (element.contains('</h3>')) {
-                  keyList.add(element);
-                } else {}
-              });
-            }
-          });
+  s.split('<h2>').forEach((element) {
+    if (element.contains('</h2>')) {
+      if (mykeyList.isEmpty) {
+        keyList.add([
+          '<h2>${element.split('</h2>').first}',
+          element.split('</h2>').last
+        ]);
+      } else {
+        if (element.contains('</h2>')) {
+          keyList.add([
+            '<h2>${element.split('</h2>').first}',
+            element.split('</h2>').last
+          ]);
         }
-      });
+      }
     }
   });
   print(keyList);
+}
+
+void sub(String element) {
+  element.split('<p>').forEach((element) {
+    if (element.contains('</p>')) {
+      keyList[count.value].add(element);
+    }
+    // element.split('<br>').forEach((element) {
+    //   if (element.contains('</br>')) {
+    //     keyList[count.value].add(element);
+    //   }
+    //   element.split('</h3>').forEach((element) {
+    //     print(element);
+    //     if (element.contains('<h3>')) {
+    //       if (mykeyList.isEmpty) {
+    //         keyList.add([element]);
+    //       } else {
+    //         count.value++;
+    //         keyList.add([element]);
+    //       }
+    //     } else {}
+    //   });
+    // });
+  });
 }
 
 translate(var text) {

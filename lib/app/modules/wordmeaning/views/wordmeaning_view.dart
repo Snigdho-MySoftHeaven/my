@@ -20,36 +20,73 @@ class WordmeaningView extends GetView<WordmeaningController> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  for (int i = 0; i < keyList.length; i++)
-                    Card(
-                      elevation: 5.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Container(
-                        width: double.infinity,
-                        child: Html(data: keyList[i], shrinkWrap: true, style: {
-                          "html": Style(
-                            fontSize: FontSize(18.0),
+                  for (int index = 0; index < keyList.length; index++)
+                    Column(
+                      children: [
+                        Card(
+                          elevation: 5.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
-                          'p': Style(
-                            fontSize: FontSize(18.0),
+                          child: Container(
+                            width: double.infinity,
+                            child: Html(
+                                data: keyList[index].first,
+                                shrinkWrap: true,
+                                style: {
+                                  "html": Style(
+                                    fontSize: FontSize(18.0),
+                                  ),
+                                  'p': Style(
+                                    fontSize: FontSize(18.0),
+                                  ),
+                                  'h1': Style(
+                                    fontSize: FontSize(20.0),
+                                  ),
+                                  'h2': Style(
+                                    fontSize: FontSize(20.0),
+                                  ),
+                                  'br': Style(
+                                    margin: EdgeInsets.only(bottom: 10.0),
+                                  ),
+                                }),
                           ),
-                          'h1': Style(
-                            fontSize: FontSize(20.0),
+                        ),
+                        Card(
+                          elevation: 5.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
-                          'h2': Style(
-                            fontSize: FontSize(20.0),
+                          child: Container(
+                            width: double.infinity,
+                            child: Html(
+                                data: keyList[index].last,
+                                shrinkWrap: true,
+                                style: {
+                                  "html": Style(
+                                    fontSize: FontSize(18.0),
+                                  ),
+                                  'p': Style(
+                                    fontSize: FontSize(18.0),
+                                  ),
+                                  'h1': Style(
+                                    fontSize: FontSize(20.0),
+                                  ),
+                                  'h2': Style(
+                                    fontSize: FontSize(20.0),
+                                  ),
+                                  'br': Style(
+                                    margin: EdgeInsets.only(bottom: 10.0),
+                                  ),
+                                }),
                           ),
-                          'br': Style(
-                            margin: EdgeInsets.only(bottom: 10.0),
-                          ),
-                        }),
-                      ),
-                    ),
+                        ),
+                      ],
+                    )
                 ],
               ),
             ),

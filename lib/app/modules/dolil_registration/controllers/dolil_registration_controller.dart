@@ -4,10 +4,12 @@ class DolilRegistrationController extends GetxController {
   //TODO: Implement DolilRegistrationController
   final count = 0.obs;
   final key = ''.obs;
+  final mykeyList = [].obs;
 
   @override
   void onInit() {
     key.value = '';
+    count.value = 0;
     super.onInit();
   }
 
@@ -20,6 +22,4 @@ class DolilRegistrationController extends GetxController {
   void onClose() {
     key.value = '';
   }
-
-  void increment() => count.value++;
 }

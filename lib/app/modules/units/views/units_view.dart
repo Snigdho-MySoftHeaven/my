@@ -28,7 +28,7 @@ class UnitsView extends GetView<UnitsController> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(15),
+        padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -111,51 +111,90 @@ class Details_View extends StatelessWidget {
     return Obx(() {
       if (controller.key.value != '') {
         return Padding(
-          padding: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(0.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (int i = 0; i < keyList.length; i++)
-                Card(
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Container(
-                    width: double.infinity,
-                    child: Html(data: keyList[i], shrinkWrap: true, style: {
-                      "html": Style(
-                        fontSize: FontSize(18.0),
+              for (int index = 0; index < keyList.length; index++)
+                Column(
+                  children: [
+                    Card(
+                      elevation: 5.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      'p': Style(
-                        fontSize: FontSize(18.0),
+                      child: Container(
+                        width: double.infinity,
+                        child: Html(
+                            data: keyList[index].first,
+                            shrinkWrap: true,
+                            style: {
+                              "html": Style(
+                                fontSize: FontSize(18.0),
+                              ),
+                              'p': Style(
+                                fontSize: FontSize(18.0),
+                              ),
+                              'h1': Style(
+                                fontSize: FontSize(20.0),
+                              ),
+                              'h2': Style(
+                                fontSize: FontSize(20.0),
+                              ),
+                              'br': Style(
+                                margin: EdgeInsets.only(bottom: 10.0),
+                              ),
+                            }),
                       ),
-                      'h1': Style(
-                        fontSize: FontSize(20.0),
-                      ),
-                      'h2': Style(
-                        fontSize: FontSize(20.0),
-                      ),
-                      'br': Style(
-                        margin: EdgeInsets.only(bottom: 10.0),
-                      ),
-                    }),
-                  ),
-                ),
-              if (extra_data[controller.key.value]!.contains('img src='))
-                InkWell(
-                  onTap: () async {
-                    ZoomImage(context, 'assets/images/img.png');
-                  },
-                  child: Image.asset(
-                    'assets/images/img.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    ),
+                    extra_data[controller.key.value]!.contains('img src=')
+                        ? InkWell(
+                            onTap: () async {
+                              ZoomImage(context, 'assets/images/img.png');
+                            },
+                            child: Image.asset(
+                              'assets/images/img.png',
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : Card(
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Container(
+                              width: double.infinity,
+                              child: Html(
+                                  data: keyList[index].last,
+                                  shrinkWrap: true,
+                                  style: {
+                                    "html": Style(
+                                      fontSize: FontSize(18.0),
+                                    ),
+                                    'p': Style(
+                                      fontSize: FontSize(18.0),
+                                    ),
+                                    'h1': Style(
+                                      fontSize: FontSize(20.0),
+                                    ),
+                                    'h2': Style(
+                                      fontSize: FontSize(20.0),
+                                    ),
+                                    'br': Style(
+                                      margin: EdgeInsets.only(bottom: 10.0),
+                                    ),
+                                  }),
+                            ),
+                          ),
+                  ],
+                )
             ],
           ),
         );
       }
-      return Container();
+      return Container(
+        height: 0.0,
+      );
     });
   }
 }
