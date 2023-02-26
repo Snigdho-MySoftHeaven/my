@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../../Utils/helper_functions.dart';
 import '../controllers/calculation_controller.dart';
 
 class CalculationView extends GetView<CalculationController> {
@@ -48,6 +50,10 @@ class CalculationView extends GetView<CalculationController> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp("[0-9]")),
+                            ],
                             controller: controller.height1.value,
                             decoration: InputDecoration(
                               constraints: BoxConstraints(
@@ -69,6 +75,10 @@ class CalculationView extends GetView<CalculationController> {
                             },
                           ),
                           TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp("[0-9]")),
+                            ],
                             controller: controller.width1.value,
                             decoration: InputDecoration(
                               constraints: BoxConstraints(
@@ -95,6 +105,10 @@ class CalculationView extends GetView<CalculationController> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp("[0-9]")),
+                            ],
                             controller: controller.height2.value,
                             decoration: InputDecoration(
                               constraints: BoxConstraints(
@@ -116,6 +130,10 @@ class CalculationView extends GetView<CalculationController> {
                             },
                           ),
                           TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp("[0-9]")),
+                            ],
                             controller: controller.width2.value,
                             decoration: InputDecoration(
                               constraints: BoxConstraints(
@@ -225,14 +243,14 @@ class CalculationView extends GetView<CalculationController> {
                                     child: Text(
                                       'মোট ক্ষেত্রফল',
                                       style: TextStyle(
-                                          fontSize: 15,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Text(
-                                    ' :   ${(controller.area.value)} বর্গ ফুট',
+                                    ' :   ${translate(controller.area.value)} বর্গ ফুট',
                                     style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
@@ -244,14 +262,14 @@ class CalculationView extends GetView<CalculationController> {
                                     child: Text(
                                       'মোট শতাংশ',
                                       style: TextStyle(
-                                          fontSize: 15,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Text(
-                                    ' :   ${controller.areapersent.value} শতাংশ',
+                                    ' :   ${translate(controller.areapersent.value)} শতাংশ',
                                     style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
@@ -263,14 +281,14 @@ class CalculationView extends GetView<CalculationController> {
                                     child: Text(
                                       'মোট কাঠা ',
                                       style: TextStyle(
-                                          fontSize: 15,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Text(
-                                    ' :   ${controller.areaperkatha.value} বর্গ মিটার',
+                                    ' :   ${translate(controller.areaperkatha.value)} কাঠা',
                                     style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
@@ -282,14 +300,14 @@ class CalculationView extends GetView<CalculationController> {
                                     child: Text(
                                       'মোট বিঘা ',
                                       style: TextStyle(
-                                          fontSize: 15,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Text(
-                                    ' :   ${controller.areaperbigha.value} বর্গ মিটার',
+                                    ' :   ${translate(controller.areaperbigha.value)} বিঘা',
                                     style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],

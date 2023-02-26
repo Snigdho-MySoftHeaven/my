@@ -111,32 +111,54 @@ class Details_View extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               for (int i = 0; i < keyList.length; i++)
-                Card(
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Container(
-                    width: double.infinity,
-                    child: Html(data: keyList[i], shrinkWrap: true, style: {
-                      "html": Style(
-                        fontSize: FontSize(18.0),
+                (keyList[i].contains('<h2>') || keyList[i].contains('</h2>'))
+                    ? Card(
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          child:
+                              Html(data: keyList[i], shrinkWrap: true, style: {
+                            "html": Style(
+                              fontSize: FontSize(18.0),
+                            ),
+                            'p': Style(
+                              fontSize: FontSize(18.0),
+                            ),
+                            'h1': Style(
+                              fontSize: FontSize(20.0),
+                            ),
+                            'h2': Style(
+                              fontSize: FontSize(20.0),
+                            ),
+                            'br': Style(
+                              margin: EdgeInsets.only(bottom: 10.0),
+                            ),
+                          }),
+                        ),
+                      )
+                    : Container(
+                        width: double.infinity,
+                        child: Html(data: keyList[i], shrinkWrap: true, style: {
+                          "html": Style(
+                            fontSize: FontSize(18.0),
+                          ),
+                          'p': Style(
+                            fontSize: FontSize(18.0),
+                          ),
+                          'h1': Style(
+                            fontSize: FontSize(20.0),
+                          ),
+                          'h2': Style(
+                            fontSize: FontSize(20.0),
+                          ),
+                          'br': Style(
+                            margin: EdgeInsets.only(bottom: 10.0),
+                          ),
+                        }),
                       ),
-                      'p': Style(
-                        fontSize: FontSize(18.0),
-                      ),
-                      'h1': Style(
-                        fontSize: FontSize(20.0),
-                      ),
-                      'h2': Style(
-                        fontSize: FontSize(20.0),
-                      ),
-                      'br': Style(
-                        margin: EdgeInsets.only(bottom: 10.0),
-                      ),
-                    }),
-                  ),
-                ),
             ],
           ),
         );

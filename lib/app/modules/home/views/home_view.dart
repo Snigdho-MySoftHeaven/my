@@ -9,7 +9,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('title'.tr),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -77,6 +77,27 @@ class HomeView extends GetView<HomeController> {
                     ],
                     child: Center(
                         child: Text('ভূমি পরিমাপ ক্যালকুলেটর',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Colors.white,
+                            ))),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed('/settings');
+                  },
+                  child: Glass_card(
+                    height: 120,
+                    width: MediaQuery.of(context).size.width / 2 - 20,
+                    gredientColor: [
+                      Colors.deepPurple.shade800,
+                      Color(0xff5BB318),
+                    ],
+                    child: Center(
+                        child: Text('settings'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,

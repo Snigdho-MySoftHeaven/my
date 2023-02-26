@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 List<String> keyList = [];
 void liststring(String s) {
   keyList = [];
@@ -24,4 +26,18 @@ void liststring(String s) {
       });
     }
   });
+  print(keyList);
+}
+
+translate(var text) {
+  String m = '';
+  text = text.toString();
+  text.split('').forEach((element) {
+    try {
+      m += element.toString().tr;
+    } catch (e) {
+      m += element;
+    }
+  });
+  return m;
 }

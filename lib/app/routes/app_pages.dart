@@ -8,6 +8,8 @@ import 'package:vumi/app/modules/extra/bindings/extra_binding.dart';
 import 'package:vumi/app/modules/extra/views/extra_view.dart';
 import 'package:vumi/app/modules/home/bindings/home_binding.dart';
 import 'package:vumi/app/modules/home/views/home_view.dart';
+import 'package:vumi/app/modules/settings/bindings/settings_binding.dart';
+import 'package:vumi/app/modules/settings/views/settings_view.dart';
 import 'package:vumi/app/modules/units/bindings/units_binding.dart';
 import 'package:vumi/app/modules/units/views/units_view.dart';
 import 'package:vumi/app/modules/wordmeaning/bindings/wordmeaning_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.CALCULATION,
       page: () => CalculationView(),
       binding: CalculationBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTINGS,
+      page: () => SettingsView(),
+      binding: SettingsBinding(),
     ),
   ];
 }
