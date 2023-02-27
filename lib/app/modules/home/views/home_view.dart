@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../custom_widget/card_glass_frost.dart';
+import '../../../custom_widget/floatingButton.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -12,6 +13,8 @@ class HomeView extends GetView<HomeController> {
         title: Text('title'.tr),
         centerTitle: true,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(15),
         child: Column(

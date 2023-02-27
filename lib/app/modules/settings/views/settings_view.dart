@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../custom_widget/floatingButton.dart';
 import '../controllers/settings_controller.dart';
 
 class SettingsView extends GetView<SettingsController> {
@@ -17,6 +18,8 @@ class SettingsView extends GetView<SettingsController> {
         title: Text('settings'.tr),
         centerTitle: true,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: floatingbutton(),
       body: Obx(
         () => Column(
           children: [

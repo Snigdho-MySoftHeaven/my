@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../Utils/helper_functions.dart';
 import '../../../custom_widget/card_glass_frost.dart';
+import '../../../custom_widget/floatingButton.dart';
 import '../../../data/All_data.dart';
 import '../controllers/dolil_registration_controller.dart';
 
@@ -26,6 +27,8 @@ class DolilRegistrationView extends GetView<DolilRegistrationController> {
         title: Text('দলিল রেজিস্ট্রি সংক্রান্ত'),
         centerTitle: true,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 10.0),
         child: Column(

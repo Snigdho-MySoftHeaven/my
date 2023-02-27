@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../Utils/helper_functions.dart';
+import '../../../custom_widget/floatingButton.dart';
 import '../controllers/calculation_controller.dart';
 
 class CalculationView extends GetView<CalculationController> {
@@ -17,6 +18,8 @@ class CalculationView extends GetView<CalculationController> {
         title: Text('ভূমি পরিমাপ ক্যালকুলেটর'),
         centerTitle: true,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: floatingbutton(),
       body: Container(
         child: Form(
           key: controller.Calculate_FormKey,

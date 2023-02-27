@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../Utils/helper_functions.dart';
 import '../../../custom_widget/card_glass_frost.dart';
 import '../../../custom_widget/custom_photo_view.dart';
+import '../../../custom_widget/floatingButton.dart';
 import '../../../data/All_data.dart';
 import '../controllers/units_controller.dart';
 
@@ -27,6 +28,8 @@ class UnitsView extends GetView<UnitsController> {
         title: Text('জমির একক জানুন '),
         centerTitle: true,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(

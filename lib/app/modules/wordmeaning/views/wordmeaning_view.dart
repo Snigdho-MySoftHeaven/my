@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
 import '../../../Utils/helper_functions.dart';
+import '../../../custom_widget/floatingButton.dart';
 import '../../../data/All_data.dart';
 import '../controllers/wordmeaning_controller.dart';
 
@@ -15,6 +16,8 @@ class WordmeaningView extends GetView<WordmeaningController> {
         title: Text('জমির একক জানুন'),
         centerTitle: true,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 10.0),
         child: Column(

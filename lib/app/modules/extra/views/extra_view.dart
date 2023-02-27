@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../custom_widget/card_glass_frost.dart';
+import '../../../custom_widget/floatingButton.dart';
 import '../controllers/extra_controller.dart';
 
 class ExtraView extends GetView<ExtraController> {
@@ -23,6 +24,8 @@ class ExtraView extends GetView<ExtraController> {
         title: Text('বিবিধ'),
         centerTitle: true,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(
