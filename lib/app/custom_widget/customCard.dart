@@ -48,8 +48,8 @@ class customCardView extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Color(0xff92D45E),
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(5.r),
-                          bottomRight: Radius.circular(5.r))),
+                          bottomLeft: Radius.circular(4.r),
+                          bottomRight: Radius.circular(4.r))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
