@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class customCardView extends StatelessWidget {
@@ -12,69 +13,66 @@ class customCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap(),
-      child: Column(
-        children: [
-          Card(
-            child: Padding(
-              padding: EdgeInsets.all(5.0),
-              child: SizedBox(
-                height: 180,
-                width: 146,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Image.asset(
-                      "images/icon_all_seba.png",
-                      width: 60,
-                      height: 60,
-                      fit: BoxFit.fill,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(text.tr,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400)),
-                  ],
+      onTap: () => onTap(),
+      child: Card(
+        child: SizedBox(
+          height: 180.h,
+          width: 146.w,
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10.r),
+                child: Image.asset(
+                  "assets/images/icon_all_seba.png",
+                  width: 60.w,
+                  height: 60.h,
+                  fit: BoxFit.fill,
                 ),
               ),
-            ),
-          ),
-          Container(
-              height: 35,
-              width: Get.width,
-              decoration: BoxDecoration(
-                  color: Color(0xffCDDC39),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(5),
-                      bottomRight: Radius.circular(5))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Details",
+              SizedBox(
+                height: 8.h,
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.r),
+                child: Text(text.tr,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400)),
+              ),
+              Spacer(),
+              Container(
+                  height: 35.h,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                      color: Color(0xff92D45E),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(5.r),
+                          bottomRight: Radius.circular(5.r))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Details",
+                        style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      SizedBox(
+                        width: 8.w,
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        size: 15.sp,
                         color: Colors.white,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Icon(
-                    Icons.arrow_forward,
-                    size: 15,
-                    color: Colors.white,
-                  ),
-                ],
-              )),
-        ],
+                      ),
+                    ],
+                  )),
+            ],
+          ),
+        ),
       ),
     );
   }

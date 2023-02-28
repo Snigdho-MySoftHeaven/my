@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -16,29 +17,35 @@ Future<void> main() async {
   bn.value = await GetStorage().read('language') != 'bn' ? true : false;
 
   runApp(
-    GetMaterialApp(
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      translations: LocalizationService(),
-      locale: Locale('bn', 'BD'),
-      supportedLocales: [
-        Locale('en', 'US'),
-        Locale('bn', 'BD'),
-      ],
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.deepPurple,
-          elevation: 0,
-        ),
-      ),
-      title: "Application",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-    ),
+    ScreenUtilInit(
+        designSize: const Size(360, 800),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return GetMaterialApp(
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            translations: LocalizationService(),
+            locale: Locale('bn', 'BD'),
+            supportedLocales: [
+              Locale('en', 'US'),
+              Locale('bn', 'BD'),
+            ],
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              appBarTheme: AppBarTheme(
+                backgroundColor: Colors.deepPurple,
+                elevation: 0,
+              ),
+            ),
+            title: "Application",
+            initialRoute: AppPages.INITIAL,
+            getPages: AppPages.routes,
+          );
+        }),
   );
 }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vumi/app/custom_widget/customCard.dart';
 
-import '../../../custom_widget/card_glass_frost.dart';
 import '../../../custom_widget/floatingButton.dart';
 import '../controllers/home_controller.dart';
 
@@ -18,117 +18,41 @@ class HomeView extends GetView<HomeController> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
+              alignment: WrapAlignment.spaceEvenly,
+              runAlignment: WrapAlignment.spaceEvenly,
               spacing: 10.0,
               runSpacing: 10.0,
               children: [
-                InkWell(
-                  onTap: () {
-                    Get.toNamed('/dolil_registration'.tr);
-                  },
-                  child: Glass_card(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width / 2 - 20,
-                    gredientColor: [
-                      Colors.deepPurple.shade800,
-                      Color(0xff5BB318),
-                    ],
-                    child: Center(
-                        child: Text('দলিল রেজিস্ট্রি সংক্রান্ত'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Colors.white,
-                            ))),
-                  ),
-                ),
-                InkWell(
+                customCardView(
+                    text: 'দলিল রেজিস্ট্রি সংক্রান্ত',
+                    onTap: () => Get.toNamed('/dolil_registration')),
+                customCardView(
+                  text: 'বিবিধ ',
                   onTap: () {
                     Get.toNamed('/extra');
                   },
-                  child: Glass_card(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width / 2 - 20,
-                    gredientColor: [
-                      Colors.deepPurple.shade800,
-                      Color(0xff5BB318),
-                    ],
-                    child: Center(
-                        child: Text('বিবিধ '.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Colors.white,
-                            ))),
-                  ),
                 ),
-                InkWell(
+                customCardView(
+                  text: 'ভূমি পরিমাপ ক্যালকুলেটর',
                   onTap: () {
                     Get.toNamed('/calculation');
                   },
-                  child: Glass_card(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width / 2 - 20,
-                    gredientColor: [
-                      Colors.deepPurple.shade800,
-                      Color(0xff5BB318),
-                    ],
-                    child: Center(
-                        child: Text('ভূমি পরিমাপ ক্যালকুলেটর'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Colors.white,
-                            ))),
-                  ),
                 ),
-                InkWell(
+                customCardView(
+                  text: 'Qr Code',
                   onTap: () {
                     Get.toNamed('/qr_code');
                   },
-                  child: Glass_card(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width / 2 - 20,
-                    gredientColor: [
-                      Colors.deepPurple.shade800,
-                      Color(0xff5BB318),
-                    ],
-                    child: Center(
-                        child: Text('Qr Code'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Colors.white,
-                            ))),
-                  ),
                 ),
-                InkWell(
+                customCardView(
+                  text: 'settings',
                   onTap: () {
                     Get.toNamed('/settings');
                   },
-                  child: Glass_card(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width / 2 - 20,
-                    gredientColor: [
-                      Colors.deepPurple.shade800,
-                      Color(0xff5BB318),
-                    ],
-                    child: Center(
-                        child: Text('settings'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Colors.white,
-                            ))),
-                  ),
                 ),
               ],
             )
