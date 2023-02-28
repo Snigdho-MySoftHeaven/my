@@ -12,6 +12,7 @@ abstract class Routes {
   static const CALCULATION = _Paths.CALCULATION;
   static const SETTINGS = _Paths.SETTINGS;
   static const QRCOODE = _Paths.QRCOODE;
+  static const WEB_VIEW = _Paths.WEB_VIEW;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const CALCULATION = '/calculation';
   static const SETTINGS = '/settings';
   static const QRCOODE = '/qr_code';
+  static const WEB_VIEW = '/web-view';
 }

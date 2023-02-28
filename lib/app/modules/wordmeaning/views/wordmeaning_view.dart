@@ -13,7 +13,7 @@ class WordmeaningView extends GetView<WordmeaningController> {
     liststring(word_data);
     return Scaffold(
       appBar: AppBar(
-        title: Text('জমির একক জানুন'),
+        title: Text('জমির একক জানুন'.tr),
         centerTitle: true,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -36,6 +36,7 @@ class WordmeaningView extends GetView<WordmeaningController> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Container(
+                            padding: EdgeInsets.all(10.0),
                             width: double.infinity,
                             child: Html(
                                 data: keyList[index].first,
@@ -65,6 +66,7 @@ class WordmeaningView extends GetView<WordmeaningController> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Container(
+                            padding: EdgeInsets.all(10.0),
                             width: double.infinity,
                             child: Html(
                                 data: keyList[index].last,

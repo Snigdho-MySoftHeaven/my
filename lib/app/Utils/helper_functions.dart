@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 RxBool bn = false.obs;
-void toggle() => bn.value = !bn.value;
+
 final count = 0.obs;
 List<String> mykeyList = [];
 List<List<String>> keyList = [];

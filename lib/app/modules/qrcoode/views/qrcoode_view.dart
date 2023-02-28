@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -11,7 +10,7 @@ class QrcoodeView extends GetView<QrcoodeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QrcoodeView'),
+        title: Text('Qr Code'.tr),
         centerTitle: true,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -36,17 +35,19 @@ class QrcoodeView extends GetView<QrcoodeController> {
                 onQRViewCreated: controller.onQRViewCreated,
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: Center(
-                child: Obx(
-                  () => (controller.result.value != null)
-                      ? Text(
-                          'Barcode Type: ${describeEnum(controller.result.value!.format)}   Data: ${controller.result.value!.code}')
-                      : Container(),
-                ),
-              ),
-            )
+            Obx(() => controller.result.value != null
+                ? Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        controller.qrcontroller?.resumeCamera();
+                      },
+                      child: Text(
+                        'Scan Again',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  )
+                : Container()),
           ],
         ),
       ),

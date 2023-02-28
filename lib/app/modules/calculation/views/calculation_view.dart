@@ -15,7 +15,7 @@ class CalculationView extends GetView<CalculationController> {
           onPressed: () => Get.back(),
           icon: Icon(Icons.arrow_back_ios),
         ),
-        title: Text('ভূমি পরিমাপ ক্যালকুলেটর'),
+        title: Text('ভূমি পরিমাপ ক্যালকুলেটর'.tr),
         centerTitle: true,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -42,7 +42,7 @@ class CalculationView extends GetView<CalculationController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'ভূমি পরিমাপ ক্যালকুলেটর',
+                            'ভূমি পরিমাপ ক্যালকুলেটর'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
@@ -66,13 +66,13 @@ class CalculationView extends GetView<CalculationController> {
                                   borderRadius: BorderRadius.circular(6),
                                   borderSide: const BorderSide(
                                       color: Colors.blue, width: 1)),
-                              labelText: 'প্রথম দৈর্ঘ্য',
-                              hintText: 'প্রথম দৈর্ঘ্য ( ফুট )',
+                              labelText: 'প্রথম দৈর্ঘ্য'.tr,
+                              hintText: 'প্রথম দৈর্ঘ্য'.tr + '( ফুট )'.tr,
                             ),
                             keyboardType: TextInputType.number,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'প্রথম দৈর্ঘ্য প্রদান করুন';
+                                return 'প্রথম দৈর্ঘ্য প্রদান করুন'.tr;
                               }
                               return null;
                             },
@@ -91,13 +91,13 @@ class CalculationView extends GetView<CalculationController> {
                                   borderRadius: BorderRadius.circular(6),
                                   borderSide: const BorderSide(
                                       color: Colors.blue, width: 1)),
-                              labelText: 'প্রথম প্রস্থ',
-                              hintText: 'প্রথম প্রস্থ ( ফুট )',
+                              labelText: 'প্রথম প্রস্থ'.tr,
+                              hintText: 'প্রথম প্রস্থ'.tr + '( ফুট )'.tr,
                             ),
                             keyboardType: TextInputType.number,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'প্রথম প্রস্থ প্রদান করুন';
+                                return 'প্রথম প্রস্থ প্রদান করুন'.tr;
                               }
                               return null;
                             },
@@ -121,13 +121,13 @@ class CalculationView extends GetView<CalculationController> {
                                   borderRadius: BorderRadius.circular(6),
                                   borderSide: const BorderSide(
                                       color: Colors.blue, width: 1)),
-                              labelText: 'দ্বিতীয় দৈর্ঘ্য',
-                              hintText: 'দ্বিতীয় দৈর্ঘ্য ( ফুট )',
+                              labelText: 'দ্বিতীয় দৈর্ঘ্য'.tr,
+                              hintText: ('দ্বিতীয় দৈর্ঘ্য'.tr + '( ফুট )'.tr),
                             ),
                             keyboardType: TextInputType.number,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'দ্বিতীয় দৈর্ঘ্য প্রদান করুন';
+                                return 'দ্বিতীয় দৈর্ঘ্য প্রদান করুন'.tr;
                               }
                               return null;
                             },
@@ -146,13 +146,13 @@ class CalculationView extends GetView<CalculationController> {
                                   borderRadius: BorderRadius.circular(6),
                                   borderSide: const BorderSide(
                                       color: Colors.blue, width: 1)),
-                              labelText: 'দ্বিতীয় প্রস্থ',
-                              hintText: 'দ্বিতীয় প্রস্থ ( ফুট )',
+                              labelText: 'দ্বিতীয় প্রস্থ'.tr,
+                              hintText: ('দ্বিতীয় প্রস্থ'.tr + '( ফুট )'.tr),
                             ),
                             keyboardType: TextInputType.number,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'দ্বিতীয় প্রস্থ প্রদান করুন';
+                                return 'দ্বিতীয় প্রস্থ প্রদান করুন'.tr;
                               }
                               return null;
                             },
@@ -176,7 +176,7 @@ class CalculationView extends GetView<CalculationController> {
                                     .reset();
                                 controller.clear();
                               },
-                              child: Text('পরিস্কার করুন',
+                              child: Text('পরিস্কার করুন'.tr,
                                   style: TextStyle(fontSize: 20)),
                             ),
                             ElevatedButton(
@@ -193,7 +193,7 @@ class CalculationView extends GetView<CalculationController> {
                                     .validate();
                                 controller.calculateArea();
                               },
-                              child: Text('হিসাব করুন',
+                              child: Text('হিসাব করুন'.tr,
                                   style: TextStyle(fontSize: 20)),
                             ),
                           ],
@@ -225,7 +225,7 @@ class CalculationView extends GetView<CalculationController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'মোট পরিমান',
+                                    'মোট পরিমান'.tr,
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
@@ -244,14 +244,14 @@ class CalculationView extends GetView<CalculationController> {
                                   Container(
                                     width: Get.width * 0.4,
                                     child: Text(
-                                      'মোট ক্ষেত্রফল',
+                                      'মোট ক্ষেত্রফল'.tr,
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Text(
-                                    ' :   ${translate(controller.area.value)} বর্গ ফুট',
+                                    ' :   ${translate(controller.area.value)} ${'বর্গ ফুট'.tr}',
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
@@ -263,14 +263,14 @@ class CalculationView extends GetView<CalculationController> {
                                   Container(
                                     width: Get.width * 0.4,
                                     child: Text(
-                                      'মোট শতাংশ',
+                                      'মোট শতাংশ'.tr,
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Text(
-                                    ' :   ${translate(controller.areapersent.value)} শতাংশ',
+                                    ' :   ${translate(controller.areapersent.value)} ${'শতাংশ'.tr}',
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
@@ -282,14 +282,14 @@ class CalculationView extends GetView<CalculationController> {
                                   Container(
                                     width: Get.width * 0.4,
                                     child: Text(
-                                      'মোট কাঠা ',
+                                      'মোট কাঠা'.tr,
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Text(
-                                    ' :   ${translate(controller.areaperkatha.value)} কাঠা',
+                                    ' :   ${translate(controller.areaperkatha.value)} ${'কাঠা'.tr}',
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
@@ -301,14 +301,14 @@ class CalculationView extends GetView<CalculationController> {
                                   Container(
                                     width: Get.width * 0.4,
                                     child: Text(
-                                      'মোট বিঘা ',
+                                      'মোট বিঘা'.tr,
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Text(
-                                    ' :   ${translate(controller.areaperbigha.value)} বিঘা',
+                                    ' :   ${translate(controller.areaperbigha.value)} ${'বিঘা'.tr}',
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),

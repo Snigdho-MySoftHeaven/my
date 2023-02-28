@@ -14,6 +14,8 @@ import 'package:vumi/app/modules/settings/bindings/settings_binding.dart';
 import 'package:vumi/app/modules/settings/views/settings_view.dart';
 import 'package:vumi/app/modules/units/bindings/units_binding.dart';
 import 'package:vumi/app/modules/units/views/units_view.dart';
+import 'package:vumi/app/modules/webView/bindings/web_view_binding.dart';
+import 'package:vumi/app/modules/webView/views/web_view_view.dart';
 import 'package:vumi/app/modules/wordmeaning/bindings/wordmeaning_binding.dart';
 import 'package:vumi/app/modules/wordmeaning/views/wordmeaning_view.dart';
 
@@ -64,6 +66,11 @@ class AppPages {
       name: _Paths.QRCOODE,
       page: () => QrcoodeView(),
       binding: QrcoodeBinding(),
+    ),
+    GetPage(
+      name: _Paths.WEB_VIEW,
+      page: () => WebViewView(),
+      binding: WebViewBinding(),
     ),
   ];
 }

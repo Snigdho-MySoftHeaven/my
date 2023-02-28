@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../Utils/helper_functions.dart';
 
@@ -47,7 +48,7 @@ class floatingbutton extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        Get.locale == Locale('bn') ? 'Bangla' : 'English',
+                        Get.locale == Locale('bn') ? 'Bangla'.tr : 'English'.tr,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -57,12 +58,14 @@ class floatingbutton extends StatelessWidget {
                         value: bn.value,
                         // This bool value toggles the switch.
                         activeColor: Colors.red,
-                        onChanged: (bool value) {
+                        onChanged: (bool value) async {
                           if (value) {
                             Get.updateLocale(Locale('bn'));
+                            await GetStorage().write('language', 'bn');
                             bn.value = !bn.value;
                           } else {
                             Get.updateLocale(Locale('en'));
+                            await GetStorage().write('language', 'en');
                             bn.value = !bn.value;
                           }
                         },

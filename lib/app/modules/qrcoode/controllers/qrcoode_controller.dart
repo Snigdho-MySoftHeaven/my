@@ -59,11 +59,20 @@ class QrcoodeController extends GetxController {
   void onQRViewCreated(QRViewController controller) {
     qrcontroller = controller;
     controller.scannedDataStream.listen((scanData) {
-      result.value = scanData;
-      if (result.value!.code!.isNotEmpty) {
-        count.value = 1;
-      } else {
-        count.value = 0;
+      if (scanData.code!.isNotEmpty) {
+        qrcontroller?.pauseCamera();
+        if (scanData.code!.contains('http')) {
+          result.value = scanData;
+          print(result.value!.code);
+          Get.toNamed(
+            '/web-view',
+            arguments: result.value!.code,
+          );
+        } else {
+          qrcontroller?.resumeCamera();
+          result.value = null;
+          Get.snackbar('Invalid QR Code', 'Please scan a valid QR Code');
+        }
       }
       update();
     });

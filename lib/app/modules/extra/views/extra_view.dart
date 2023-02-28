@@ -21,7 +21,7 @@ class ExtraView extends GetView<ExtraController> {
                 },
                 icon: Icon(Icons.arrow_back_ios),
               )),
-        title: Text('বিবিধ'),
+        title: Text('বিবিধ'.tr),
         centerTitle: true,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -50,7 +50,7 @@ class ExtraView extends GetView<ExtraController> {
                       Color(0xff5BB318),
                     ],
                     child: Center(
-                        child: Text('জমির একক জানুন',
+                        child: Text('জমির একক জানুন'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class ExtraView extends GetView<ExtraController> {
                       Color(0xff5BB318),
                     ],
                     child: Center(
-                        child: Text('ভূমিসেবায় গুরুত্বপূর্ণ শব্দের অর্থ  ',
+                        child: Text('ভূমিসেবায় গুরুত্বপূর্ণ শব্দের অর্থ'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,

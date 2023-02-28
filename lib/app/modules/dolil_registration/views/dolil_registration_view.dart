@@ -24,7 +24,7 @@ class DolilRegistrationView extends GetView<DolilRegistrationController> {
                 },
                 icon: Icon(Icons.arrow_back_ios),
               )),
-        title: Text('দলিল রেজিস্ট্রি সংক্রান্ত'),
+        title: Text('দলিল রেজিস্ট্রি সংক্রান্ত তথ্য'.tr),
         centerTitle: true,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -75,11 +75,12 @@ class Heading_View extends StatelessWidget {
                   ],
                   child: Center(
                       child: Text(
-                          data[data.keys.elementAt(i)]!
-                              .split('</h2>')
-                              .first
-                              .split('<h2>')
-                              .last,
+                          (data[data.keys.elementAt(i)]!
+                                  .split('</h2>')
+                                  .first
+                                  .split('<h2>')
+                                  .last)
+                              .tr,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -122,6 +123,7 @@ class Details_View extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Container(
+                        padding: EdgeInsets.all(10.0),
                         width: double.infinity,
                         child: Html(
                             data: keyList[index].first,
@@ -151,6 +153,7 @@ class Details_View extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Container(
+                        padding: EdgeInsets.all(10.0),
                         width: double.infinity,
                         child: Html(
                             data: keyList[index].last,

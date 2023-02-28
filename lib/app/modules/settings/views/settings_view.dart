@@ -25,7 +25,7 @@ class SettingsView extends GetView<SettingsController> {
           children: [
             ListTile(
               title: Text(
-                'English',
+                'English'.tr,
                 style: TextStyle(
                     fontWeight:
                         controller.count.value ? null : FontWeight.bold),
@@ -35,7 +35,7 @@ class SettingsView extends GetView<SettingsController> {
               },
             ),
             ListTile(
-              title: Text('Bangla',
+              title: Text('Bangla'.tr,
                   style: TextStyle(
                       fontWeight:
                           controller.count.value ? FontWeight.bold : null)),

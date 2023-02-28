@@ -27,7 +27,7 @@ class HomeView extends GetView<HomeController> {
               children: [
                 InkWell(
                   onTap: () {
-                    Get.toNamed('/dolil_registration');
+                    Get.toNamed('/dolil_registration'.tr);
                   },
                   child: Glass_card(
                     height: 120,
@@ -37,7 +37,7 @@ class HomeView extends GetView<HomeController> {
                       Color(0xff5BB318),
                     ],
                     child: Center(
-                        child: Text('দলিল রেজিস্ট্রি সংক্রান্ত',
+                        child: Text('দলিল রেজিস্ট্রি সংক্রান্ত'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -58,7 +58,7 @@ class HomeView extends GetView<HomeController> {
                       Color(0xff5BB318),
                     ],
                     child: Center(
-                        child: Text('বিবিধ ',
+                        child: Text('বিবিধ '.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -79,7 +79,7 @@ class HomeView extends GetView<HomeController> {
                       Color(0xff5BB318),
                     ],
                     child: Center(
-                        child: Text('ভূমি পরিমাপ ক্যালকুলেটর',
+                        child: Text('ভূমি পরিমাপ ক্যালকুলেটর'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class HomeView extends GetView<HomeController> {
                       Color(0xff5BB318),
                     ],
                     child: Center(
-                        child: Text('Qr Code',
+                        child: Text('Qr Code'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
