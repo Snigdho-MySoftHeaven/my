@@ -9,6 +9,7 @@ class SettingsView extends GetView<SettingsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff348739),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {

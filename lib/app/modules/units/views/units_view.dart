@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:vumi/app/custom_widget/customCard.dart';
 
 import '../../../Utils/helper_functions.dart';
-import '../../../custom_widget/card_glass_frost.dart';
 import '../../../custom_widget/custom_photo_view.dart';
 import '../../../custom_widget/floatingButton.dart';
 import '../../../data/All_data.dart';
@@ -13,21 +14,79 @@ class UnitsView extends GetView<UnitsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Obx(() => controller.key.value.isEmpty
-            ? IconButton(
-                onPressed: () => Get.back(),
-                icon: Icon(Icons.arrow_back_ios),
-              )
-            : IconButton(
-                onPressed: () {
-                  controller.key.value = '';
-                },
-                icon: Icon(Icons.arrow_back_ios),
-              )),
-        title: Text('জমির একক জানুন'.tr),
-        centerTitle: true,
-      ),
+      appBar: PreferredSize(
+          child: Obx(
+            () => Container(
+              padding: controller.key.value.isEmpty
+                  ? EdgeInsets.only(top: 30.h)
+                  : EdgeInsets.only(top: 20.h),
+              decoration: BoxDecoration(
+                  color: Color(0xff348739),
+                  borderRadius: controller.key.value.isEmpty
+                      ? BorderRadius.zero
+                      : BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15))),
+              alignment: Alignment.center,
+              height: controller.key.value.isEmpty ? 75.h : 136.h,
+              width: Get.width,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Obx(() => controller.key.value.isEmpty
+                        ? IconButton(
+                            onPressed: () => Get.back(),
+                            icon: Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.white,
+                            ),
+                          )
+                        : IconButton(
+                            onPressed: () {
+                              controller.key.value = '';
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.white,
+                            ),
+                          )),
+                  ),
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Obx(() => controller.key.value.isEmpty
+                        ? Text(
+                            'জমির একক জানুন'.tr,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white),
+                          )
+                        : Container(
+                            alignment: Alignment.center,
+                            margin: EdgeInsets.only(left: 20, right: 10),
+                            child: Text(
+                              keyList.first.first
+                                  .split('</h2>')
+                                  .first
+                                  .split('<h2>')
+                                  .last,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white),
+                            ),
+                          )),
+                  )),
+                ],
+              ),
+            ),
+          ),
+          preferredSize: Size(Get.width, 136.h)),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
@@ -60,41 +119,25 @@ class Heading_View extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (controller.key.value.isEmpty) {
-        return Wrap(
-          spacing: 10.0,
-          runSpacing: 10.0,
-          runAlignment: WrapAlignment.start,
-          children: [
-            for (var i = 0; i < extra_data.keys.length; i++)
-              InkWell(
-                onTap: () {
-                  controller.key.value = extra_data.keys.elementAt(i);
-                  liststring(extra_data[extra_data.keys.elementAt(i)]!);
-                },
-                child: Glass_card(
-                  height: 120,
-                  width: MediaQuery.of(context).size.width / 2 - 20,
-                  gredientColor: [
-                    Colors.deepPurple.shade800,
-                    Color(0xff5BB318),
-                  ],
-                  child: Center(
-                      child: Text(
-                          (extra_data[extra_data.keys.elementAt(i)]!
-                                  .split('</h2>')
-                                  .first
-                                  .split('<h2>')
-                                  .last)
-                              .tr,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
-                            color: Colors.white,
-                          ))),
-                ),
-              ),
-          ],
+        return Padding(
+          padding: EdgeInsets.only(top: 15.0, left: 15.w),
+          child: Wrap(
+            spacing: 25.0,
+            runSpacing: 10.0,
+            children: [
+              for (var i = 0; i < data.keys.length; i++)
+                customCardView(
+                    text: data[data.keys.elementAt(i)]!
+                        .split('</h2>')
+                        .first
+                        .split('<h2>')
+                        .last,
+                    onTap: () {
+                      controller.key.value = data.keys.elementAt(i);
+                      liststring(data[data.keys.elementAt(i)]!);
+                    }),
+            ],
+          ),
         );
       }
       return Container();
@@ -115,7 +158,7 @@ class Details_View extends StatelessWidget {
     return Obx(() {
       if (controller.key.value != '') {
         return Padding(
-          padding: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -144,6 +187,36 @@ class Details_View extends StatelessWidget {
                                 fontSize: FontSize(20.0),
                               ),
                               'h2': Style(
+                                  fontSize: FontSize(20.0),
+                                  color: Color(0xFF348739)),
+                              'br': Style(
+                                margin: EdgeInsets.only(bottom: 10.0),
+                              ),
+                            }),
+                      ),
+                    ),
+                    Card(
+                      elevation: 5.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        width: double.infinity,
+                        child: Html(
+                            data: keyList[index].last,
+                            shrinkWrap: true,
+                            style: {
+                              "html": Style(
+                                fontSize: FontSize(18.0),
+                              ),
+                              'p': Style(
+                                fontSize: FontSize(18.0),
+                              ),
+                              'h1': Style(
+                                fontSize: FontSize(20.0),
+                              ),
+                              'h2': Style(
                                 fontSize: FontSize(20.0),
                               ),
                               'br': Style(
@@ -152,46 +225,6 @@ class Details_View extends StatelessWidget {
                             }),
                       ),
                     ),
-                    extra_data[controller.key.value]!.contains('img src=')
-                        ? InkWell(
-                            onTap: () async {
-                              ZoomImage(context, 'assets/images/img.png');
-                            },
-                            child: Image.asset(
-                              'assets/images/img.png',
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                        : Card(
-                            elevation: 5.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              width: double.infinity,
-                              child: Html(
-                                  data: keyList[index].last,
-                                  shrinkWrap: true,
-                                  style: {
-                                    "html": Style(
-                                      fontSize: FontSize(18.0),
-                                    ),
-                                    'p': Style(
-                                      fontSize: FontSize(18.0),
-                                    ),
-                                    'h1': Style(
-                                      fontSize: FontSize(20.0),
-                                    ),
-                                    'h2': Style(
-                                      fontSize: FontSize(20.0),
-                                    ),
-                                    'br': Style(
-                                      margin: EdgeInsets.only(bottom: 10.0),
-                                    ),
-                                  }),
-                            ),
-                          ),
                   ],
                 )
             ],

@@ -18,6 +18,7 @@ dependencies:
   flutter_inappwebview: 5.7.2+3
   flutter_easyloading: 3.0.5
   flutter_screenutil: 5.6.1
+  google_fonts: 4.0.3
   flutter: 
     sdk: flutter
   flutter_localizations: 
@@ -36,6 +37,29 @@ flutter:
     - assets/images/
     - assets/locates/bn_BD.json
     - assets/locates/en_US.json
+    - assets/fonts/Roboto/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto/Roboto-Light.ttf
+          weight: 300
+
+    - family: kalpurush
+      fonts:
+        - asset: assets/fonts/kalpurush/kalpurush.ttf
+        - asset: assets/fonts/kalpurush/kalpurush.ttf
+          weight: 700
+        - asset: assets/fonts/kalpurush/kalpurush.ttf
+          weight: 500
+        - asset: assets/fonts/kalpurush/kalpurush.ttf
+          weight: 300
+
   generate: true
   uses-material-design: true
 
@@ -50,4 +74,5 @@ flutter_icons:
 
 flutter_app_name: 
   name: ভূমিসেবা
+
 

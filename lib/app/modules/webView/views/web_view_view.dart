@@ -10,6 +10,7 @@ class WebViewView extends GetView<WebViewController> {
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
           appBar: AppBar(
+              backgroundColor: Color(0xff348739),
               title: Text(
                 controller.url.value,
                 maxLines: 1,

@@ -12,6 +12,7 @@ class floatingbutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      backgroundColor: Color(0xff348739),
       onPressed: () {
         Get.defaultDialog(
           actions: [

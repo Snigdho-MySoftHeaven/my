@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +14,11 @@ import 'app/routes/app_pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LicenseRegistry.addLicense(() async* {
+    final license =
+        await rootBundle.loadString('assets/fonts/Roboto/LICENSE.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
   await initTranslations();
   await GetStorage.init();
   configLoading();
@@ -42,6 +49,7 @@ Future<void> main() async {
                 backgroundColor: Colors.deepPurple,
                 elevation: 0,
               ),
+              fontFamily: bn.value ? 'kalpurush' : 'Roboto',
             ),
             title: "Application",
             initialRoute: AppPages.INITIAL,

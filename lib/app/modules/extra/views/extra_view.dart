@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vumi/app/custom_widget/customCard.dart';
 
-import '../../../custom_widget/card_glass_frost.dart';
 import '../../../custom_widget/floatingButton.dart';
 import '../controllers/extra_controller.dart';
 
@@ -10,6 +10,7 @@ class ExtraView extends GetView<ExtraController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff348739),
         leading: Obx(() => controller.key.value.isEmpty
             ? IconButton(
                 onPressed: () => Get.back(),
@@ -29,58 +30,25 @@ class ExtraView extends GetView<ExtraController> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Wrap(
-              runAlignment: WrapAlignment.center,
-              alignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 10.0,
-              runSpacing: 10.0,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Get.toNamed('/units');
-                  },
-                  child: Glass_card(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width / 2 - 20,
-                    gredientColor: [
-                      Colors.deepPurple.shade800,
-                      Color(0xff5BB318),
-                    ],
-                    child: Center(
-                        child: Text('জমির একক জানুন'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Colors.white,
-                            ))),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.toNamed('/word_meaning');
-                  },
-                  child: Glass_card(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width / 2 - 20,
-                    gredientColor: [
-                      Colors.deepPurple.shade800,
-                      Color(0xff5BB318),
-                    ],
-                    child: Center(
-                        child: Text('ভূমিসেবায় গুরুত্বপূর্ণ শব্দের অর্থ'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Colors.white,
-                            ))),
-                  ),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: Wrap(
+                runAlignment: WrapAlignment.center,
+                alignment: WrapAlignment.spaceEvenly,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 10.0,
+                runSpacing: 10.0,
+                children: [
+                  customCardView(
+                      text: 'জমির একক জানুন',
+                      onTap: () => Get.toNamed('/units')),
+                  customCardView(
+                      text: 'ভূমিসেবায় গুরুত্বপূর্ণ শব্দের অর্থ',
+                      onTap: () => Get.toNamed('/word_meaning')),
+                ],
+              ),
             )
           ],
         ),

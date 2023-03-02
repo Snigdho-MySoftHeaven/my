@@ -10,6 +10,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff348739),
         title: Text('title'.tr),
         centerTitle: true,
       ),
@@ -18,15 +19,17 @@ class HomeView extends GetView<HomeController> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              alignment: WrapAlignment.spaceEvenly,
               runAlignment: WrapAlignment.spaceEvenly,
+              alignment: WrapAlignment.spaceEvenly,
               spacing: 10.0,
               runSpacing: 10.0,
               children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                ),
                 customCardView(
                     text: 'দলিল রেজিস্ট্রি সংক্রান্ত',
                     onTap: () => Get.toNamed('/dolil_registration')),
@@ -48,11 +51,20 @@ class HomeView extends GetView<HomeController> {
                     Get.toNamed('/qr_code');
                   },
                 ),
-                customCardView(
-                  text: 'settings',
-                  onTap: () {
-                    Get.toNamed('/settings');
-                  },
+                Padding(
+                  padding: const EdgeInsets.only(left: 15),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      customCardView(
+                        text: 'settings',
+                        onTap: () {
+                          Get.toNamed('/settings');
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ],
             )
