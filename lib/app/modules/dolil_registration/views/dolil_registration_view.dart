@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:vumi/app/custom_widget/customCard.dart';
 
 import '../../../Utils/helper_functions.dart';
-import '../../../custom_widget/floatingButton.dart';
 import '../../../data/All_data.dart';
 import '../controllers/dolil_registration_controller.dart';
 
@@ -86,8 +85,6 @@ class DolilRegistrationView extends GetView<DolilRegistrationController> {
             ),
           ),
           preferredSize: Size(Get.width, 136.h)),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 10.0),
         child: Column(

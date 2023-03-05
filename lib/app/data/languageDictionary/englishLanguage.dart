@@ -71,6 +71,7 @@ final enUs = {
   'প্রথম জমি': 'First land',
   'দ্বিতীয় জমি': 'Second land',
   'ফলাফল': 'Result',
+  '( ফুট )': '( feet )',
   /////////////////Language/////////////////////
   'English': 'English',
   'Bangla': 'Bangla',

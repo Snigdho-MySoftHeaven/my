@@ -6,7 +6,6 @@ import 'package:vumi/app/custom_widget/customCard.dart';
 
 import '../../../Utils/helper_functions.dart';
 import '../../../custom_widget/custom_photo_view.dart';
-import '../../../custom_widget/floatingButton.dart';
 import '../../../data/All_data.dart';
 import '../controllers/units_controller.dart';
 
@@ -87,8 +86,6 @@ class UnitsView extends GetView<UnitsController> {
             ),
           ),
           preferredSize: Size(Get.width, 136.h)),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(

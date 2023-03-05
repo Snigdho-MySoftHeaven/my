@@ -9,13 +9,7 @@ class SettingsController extends GetxController {
   final count = false.obs;
   @override
   Future<void> onInit() async {
-    Get.locale!.countryCode == 'bn' ? count.value = true : count.value = false;
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   @override

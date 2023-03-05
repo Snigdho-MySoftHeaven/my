@@ -25,14 +25,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
-  bangla_utilities:
-    dependency: "direct main"
-    description:
-      name: bangla_utilities
-      sha256: "8461369e1f3adf98c0677a35bf6eb64a16ca26551e3e6df0fa1eaa99728c9c7e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   barcode:
     dependency: transitive
     description:
@@ -481,10 +473,10 @@ packages:
     dependency: "direct main"
     description:
       name: pdf
-      sha256: "210a44241da19b056badafc8e56b71d7ba9d2333773dd64960f5ffd223a19ade"
+      sha256: "08d2c923cdcc89efe0dd8629c7c6b3ad9a04a678ac5ca942d826f7b13a997594"
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.0"
+    version: "3.8.0"
   permission_handler:
     dependency: "direct main"
     description:

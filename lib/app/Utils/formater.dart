@@ -22,49 +22,7 @@ class BanglaDigitInputFormatter extends TextInputFormatter {
 
     return TextEditingValue(
       text: lastText,
-      selection: TextSelection.collapsed(offset: lastText.length),
-      composing: TextRange(start: 0, end: lastText.length - 1),
+      selection: TextSelection.collapsed(offset: lastText.length + 1),
     );
   }
-}
-
-String convertToBengaliNumerals(String input) {
-  String output = "";
-  for (int i = 0; i < input.length; i++) {
-    switch (input[i]) {
-      case "0":
-        output += "০";
-        break;
-      case "1":
-        output += "১";
-        break;
-      case "2":
-        output += "২";
-        break;
-      case "3":
-        output += "৩";
-        break;
-      case "4":
-        output += "৪";
-        break;
-      case "5":
-        output += "৫";
-        break;
-      case "6":
-        output += "৬";
-        break;
-      case "7":
-        output += "৭";
-        break;
-      case "8":
-        output += "৮";
-        break;
-      case "9":
-        output += "৯";
-        break;
-      default:
-        output += input[i];
-    }
-  }
-  return output;
 }

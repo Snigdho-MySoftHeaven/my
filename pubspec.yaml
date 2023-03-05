@@ -19,11 +19,10 @@ dependencies:
   flutter_easyloading: 3.0.5
   flutter_screenutil: 5.6.1
   google_fonts: 4.0.3
-  pdf: 3.6.0
+  pdf: 3.8.0
   path: any
   path_provider: 2.0.13
   open_filex: 4.3.2
-  bangla_utilities: 1.0.0
   flutter: 
     sdk: flutter
   flutter_localizations: 
@@ -50,6 +49,9 @@ flutter:
     - family: kalpurush
       fonts: 
         - asset: assets/fonts/kalpurush/kalpurush.ttf
+    - family: Nikosh
+      fonts:
+        - asset: assets/fonts/kalpurush/Nikosh.ttf
   generate: true
   uses-material-design: true
 

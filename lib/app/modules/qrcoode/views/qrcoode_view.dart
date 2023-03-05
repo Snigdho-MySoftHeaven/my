@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import '../../../custom_widget/floatingButton.dart';
 import '../controllers/qrcoode_controller.dart';
 
 class QrcoodeView extends GetView<QrcoodeController> {
@@ -14,8 +13,6 @@ class QrcoodeView extends GetView<QrcoodeController> {
         title: Text('Qr Code'.tr),
         centerTitle: true,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: floatingbutton(),
       body: Center(
         child: Column(
           children: [

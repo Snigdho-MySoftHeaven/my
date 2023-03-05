@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../Utils/helper_functions.dart';
 
 class CalculationController extends GetxController {
@@ -10,6 +11,10 @@ class CalculationController extends GetxController {
   Rx<TextEditingController> height2 = TextEditingController().obs;
   Rx<TextEditingController> width1 = TextEditingController().obs;
   Rx<TextEditingController> width2 = TextEditingController().obs;
+  final h1 = 0.0.obs;
+  final h2 = 0.0.obs;
+  final w1 = 0.0.obs;
+  final w2 = 0.0.obs;
   final area = 0.0.obs;
   final areapersent = ''.obs;
   final areaperbigha = ''.obs;
@@ -21,6 +26,7 @@ class CalculationController extends GetxController {
     height2.value.text = '';
     width1.value.text = '';
     width2.value.text = '';
+    bn.value = Get.locale!.languageCode == 'bn';
   }
 
   @override
@@ -41,11 +47,6 @@ class CalculationController extends GetxController {
   }
 
   translator(var text) {
-    // text = int.parse(text);
-    // late final String number;
-    // number = BanglaUtility.englishToBanglaDigit(englishDigit: text);
-    // print(number);
-    // return number;
     String m = '';
     text = text.toString();
     text.split('').forEach((element) {
@@ -91,26 +92,18 @@ class CalculationController extends GetxController {
   void onClose() {}
   void calculateArea() {
     if (Calculate_FormKey.currentState!.validate()) {
-      if (bn.value) {
-      } else {}
-      double h1 = double.parse(translator(height1.value.text));
-      double h2 = double.parse(translator(height2.value.text));
-      double w1 = double.parse(translator(width1.value.text));
-      double w2 = double.parse(translator(width2.value.text));
-      double h = (h1 + h2) / 2;
-      double w = (w1 + w2) / 2;
+      h1.value = double.parse(translator(height1.value.text));
+      h2.value = double.parse(translator(height2.value.text));
+      w1.value = double.parse(translator(width1.value.text));
+      w2.value = double.parse(translator(width2.value.text));
+      double h = (h1.value + h2.value) / 2;
+      double w = (w1.value + w2.value) / 2;
       double a = h * w;
-      area.value = bn.value ? double.parse(translator(a)) : a;
-      areapersent.value = bn.value
-          ? translator((a / 435.6).toPrecision(4))
-          : (a / 435.6).toPrecision(4);
-      areaperbigha.value = bn.value
-          ? translator((a / 14400).toPrecision(4))
-          : (a / 14400).toPrecision(4);
-      areaperkatha.value = bn.value
-          ? translator((a / 720).toPrecision(4))
-          : (a / 720).toPrecision(4);
-      print(area.value);
+      area.value = double.parse(translator(a));
+      areapersent.value = translator((a / 435.6).toPrecision(4));
+
+      areaperbigha.value = translator((a / 14400).toPrecision(4));
+      areaperkatha.value = translator((a / 720).toPrecision(4));
     }
   }
 

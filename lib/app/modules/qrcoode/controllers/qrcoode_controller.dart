@@ -9,15 +9,7 @@ class QrcoodeController extends GetxController {
   Rx<Barcode?> result = Rx<Barcode?>(null);
   QRViewController? qrcontroller;
   final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   Future<void> permission() async {
     var status = await Permission.camera.status;

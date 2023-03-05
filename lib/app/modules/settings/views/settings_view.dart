@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../custom_widget/floatingButton.dart';
+import '../../../Utils/helper_functions.dart';
 import '../controllers/settings_controller.dart';
 
 class SettingsView extends GetView<SettingsController> {
@@ -19,29 +19,26 @@ class SettingsView extends GetView<SettingsController> {
         title: Text('settings'.tr),
         centerTitle: true,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: floatingbutton(),
       body: Obx(
         () => Column(
           children: [
             ListTile(
               title: Text(
                 'English'.tr,
-                style: TextStyle(
-                    fontWeight:
-                        controller.count.value ? null : FontWeight.bold),
+                style: TextStyle(fontWeight: bn.value ? null : FontWeight.bold),
               ),
               onTap: () {
                 controller.setLanguage('en');
+                bn.value = false;
               },
             ),
             ListTile(
               title: Text('Bangla'.tr,
-                  style: TextStyle(
-                      fontWeight:
-                          controller.count.value ? FontWeight.bold : null)),
+                  style:
+                      TextStyle(fontWeight: bn.value ? FontWeight.bold : null)),
               onTap: () {
                 controller.setLanguage('bn');
+                bn.value = true;
               },
             ),
           ],

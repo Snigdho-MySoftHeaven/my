@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vumi/app/custom_widget/customCard.dart';
 
-import '../../../custom_widget/floatingButton.dart';
 import '../controllers/extra_controller.dart';
 
 class ExtraView extends GetView<ExtraController> {
@@ -25,8 +24,6 @@ class ExtraView extends GetView<ExtraController> {
         title: Text('বিবিধ'.tr),
         centerTitle: true,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(

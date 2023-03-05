@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:open_filex/open_filex.dart';
@@ -12,6 +13,10 @@ import '../modules/calculation/controllers/calculation_controller.dart';
 import 'helper_functions.dart';
 
 void generatePDF() async {
+  final font = bn.value
+      ? await rootBundle.load("assets/fonts/kalpurush/kalpurush.ttf")
+      : await rootBundle.load("assets/fonts/Roboto/Roboto-Regular.ttf");
+  final ttf = Font.ttf(font);
   final pdf = pw.Document();
   final controller = Get.put(CalculationController());
   pdf.addPage(
@@ -32,7 +37,7 @@ void generatePDF() async {
                       Container(
                         margin: EdgeInsets.only(left: 10, right: 10, top: 30),
                         padding: const EdgeInsets.only(
-                            top: 40, bottom: 20, left: 10, right: 10),
+                            top: 40, bottom: 30, left: 10, right: 10),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: PdfColor.fromInt(0xff92D45E),
@@ -42,11 +47,13 @@ void generatePDF() async {
                           borderRadius: BorderRadius.circular(5.r),
                         ),
                         child: Container(
+                          padding: EdgeInsets.only(top: 10),
                           child: Wrap(
                             direction: Axis.horizontal,
                             runSpacing: 30,
                             spacing: 10,
                             children: [
+                              SizedBox(height: 10),
                               Row(
                                 children: [
                                   Padding(
@@ -55,6 +62,7 @@ void generatePDF() async {
                                       'প্রথম জমি'.tr,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
+                                          font: ttf,
                                           fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
                                           color: PdfColor.fromInt(0xff92D45E)),
@@ -66,15 +74,40 @@ void generatePDF() async {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  TextField(
-                                    name: 'প্রথম দৈর্ঘ্য'.tr,
-                                    value: controller.height1.value.text,
-                                    width: Get.width * 0.4,
+                                  pw.Text(
+                                    'প্রথম দৈর্ঘ্য'.tr,
+                                    style: TextStyle(
+                                      font: ttf,
+                                      fontSize: 15.sp,
+                                    ),
                                   ),
-                                  TextField(
-                                    name: 'প্রথম প্রস্থ'.tr,
-                                    value: controller.width1.value.text,
-                                    width: Get.width * 0.4,
+                                  pw.Text(
+                                    translate(controller.height1.value.text),
+                                    style: TextStyle(
+                                      font: ttf,
+                                      fontSize: 15.sp,
+                                    ),
+                                  ),
+                                  pw.Container(
+                                    height: 40,
+                                    width: 1,
+                                    color: PdfColors.grey,
+                                    margin: const EdgeInsets.only(
+                                        left: 10.0, right: 10.0),
+                                  ),
+                                  pw.Text(
+                                    'প্রথম প্রস্থ'.tr,
+                                    style: TextStyle(
+                                      font: ttf,
+                                      fontSize: 15.sp,
+                                    ),
+                                  ),
+                                  pw.Text(
+                                    translate(controller.width1.value.text),
+                                    style: TextStyle(
+                                      font: ttf,
+                                      fontSize: 15.sp,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -86,6 +119,7 @@ void generatePDF() async {
                                       'দ্বিতীয় জমি'.tr,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
+                                          font: ttf,
                                           fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
                                           color: PdfColor.fromInt(0xff92D45E)),
@@ -97,16 +131,41 @@ void generatePDF() async {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  TextField(
-                                    name: 'দ্বিতীয় দৈর্ঘ্য'.tr,
-                                    value: controller.height2.value.text,
-                                    width: Get.width * 0.4,
+                                  pw.Text(
+                                    'দ্বিতীয় দৈর্ঘ্য'.tr,
+                                    style: TextStyle(
+                                      font: ttf,
+                                      fontSize: 15.sp,
+                                    ),
                                   ),
-                                  TextField(
-                                    name: 'দ্বিতীয় প্রস্থ'.tr,
-                                    value: controller.width2.value.text,
-                                    width: Get.width * 0.4,
-                                  )
+                                  pw.Text(
+                                    translate(controller.height1.value.text),
+                                    style: TextStyle(
+                                      font: ttf,
+                                      fontSize: 15.sp,
+                                    ),
+                                  ),
+                                  pw.Container(
+                                    height: 40,
+                                    width: 1,
+                                    color: PdfColors.grey,
+                                    margin: const EdgeInsets.only(
+                                        left: 10.0, right: 10.0),
+                                  ),
+                                  pw.Text(
+                                    'দ্বিতীয় প্রস্থ'.tr,
+                                    style: TextStyle(
+                                      font: ttf,
+                                      fontSize: 15.sp,
+                                    ),
+                                  ),
+                                  pw.Text(
+                                    translate(controller.width2.value.text),
+                                    style: TextStyle(
+                                      font: ttf,
+                                      fontSize: 15.sp,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ],
@@ -126,6 +185,7 @@ void generatePDF() async {
                               'ভূমি পরিমাপ ক্যালকুলেটর'.tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  font: ttf,
                                   color: PdfColors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
@@ -174,6 +234,7 @@ void generatePDF() async {
                                     child: Text(
                                       'মোট ক্ষেত্রফল'.tr,
                                       style: TextStyle(
+                                          font: ttf,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -181,6 +242,7 @@ void generatePDF() async {
                                   Text(
                                     '    ${translate(controller.area.value)} ${'বর্গ ফুট'.tr}',
                                     style: TextStyle(
+                                        font: ttf,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -193,6 +255,7 @@ void generatePDF() async {
                                     child: Text(
                                       'মোট শতাংশ'.tr,
                                       style: TextStyle(
+                                          font: ttf,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -200,6 +263,7 @@ void generatePDF() async {
                                   Text(
                                     '    ${translate(controller.areapersent.value)} ${'শতাংশ'.tr}',
                                     style: TextStyle(
+                                        font: ttf,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -212,6 +276,7 @@ void generatePDF() async {
                                     child: Text(
                                       'মোট কাঠা'.tr,
                                       style: TextStyle(
+                                          font: ttf,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -219,6 +284,7 @@ void generatePDF() async {
                                   Text(
                                     '    ${translate(controller.areaperkatha.value)} ${'কাঠা'.tr}',
                                     style: TextStyle(
+                                        font: ttf,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -231,6 +297,7 @@ void generatePDF() async {
                                     child: Text(
                                       'মোট বিঘা'.tr,
                                       style: TextStyle(
+                                          font: ttf,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -238,6 +305,7 @@ void generatePDF() async {
                                   Text(
                                     '    ${translate(controller.areaperbigha.value)} ${'বিঘা'.tr}',
                                     style: TextStyle(
+                                        font: ttf,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -260,6 +328,7 @@ void generatePDF() async {
                               'ফলাফল'.tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  font: ttf,
                                   color: PdfColors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),

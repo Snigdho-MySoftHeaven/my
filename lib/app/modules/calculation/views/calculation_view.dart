@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../Utils/formater.dart';
 import '../../../Utils/helper_functions.dart';
 import '../../../Utils/pdfGenerator.dart';
-import '../../../custom_widget/floatingButton.dart';
 import '../controllers/calculation_controller.dart';
 
 class CalculationView extends GetView<CalculationController> {
@@ -22,8 +21,6 @@ class CalculationView extends GetView<CalculationController> {
         title: Text('ভূমি পরিমাপ ক্যালকুলেটর'.tr),
         centerTitle: true,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: floatingbutton(),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(top: 20.0),
@@ -57,6 +54,7 @@ class CalculationView extends GetView<CalculationController> {
                         ],
                       ),
                       child: Container(
+                        padding: EdgeInsets.only(top: 20),
                         child: Wrap(
                           direction: Axis.horizontal,
                           runSpacing: 30,
@@ -83,27 +81,10 @@ class CalculationView extends GetView<CalculationController> {
                                 TextFormField(
                                   controller: controller.height1.value,
                                   inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                    LengthLimitingTextInputFormatter(9),
-                                    TextInputFormatter.withFunction(
-                                        (oldValue, newValue) {
-                                      String convertedText =
-                                          convertToBengaliNumerals(
-                                              newValue.text);
-                                      print(convertedText.length);
-                                      return TextEditingValue(
-                                        text: convertedText,
-                                        selection: TextSelection.fromPosition(
-                                          TextPosition(
-                                              offset: convertedText.isNotEmpty
-                                                  ? newValue.text
-                                                          .split('')
-                                                          .length +
-                                                      1
-                                                  : 0),
-                                        ),
-                                      );
-                                    }),
+                                    bn.value
+                                        ? BanglaDigitInputFormatter()
+                                        : FilteringTextInputFormatter
+                                            .digitsOnly,
                                   ],
                                   decoration: InputDecoration(
                                     constraints: BoxConstraints(
