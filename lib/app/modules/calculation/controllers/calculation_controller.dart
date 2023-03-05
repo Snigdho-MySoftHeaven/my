@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../Utils/helper_functions.dart';
 
 class CalculationController extends GetxController {
@@ -25,11 +24,6 @@ class CalculationController extends GetxController {
   }
 
   @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
   void dispose() {
     height1.value.dispose();
     height2.value.dispose();
@@ -46,34 +40,12 @@ class CalculationController extends GetxController {
     area.value = 0.0;
   }
 
-  @override
-  void onClose() {}
-  void calculateArea() {
-    if (Calculate_FormKey.currentState!.validate()) {
-      if (bn.value) {
-      } else {}
-      double h1 = double.parse(translator(height1.value.text));
-      double h2 = double.parse(translator(height2.value.text));
-      double w1 = double.parse(translator(width1.value.text));
-      double w2 = double.parse(translator(width2.value.text));
-      double h = (h1 + h2) / 2;
-      double w = (w1 + w2) / 2;
-      double a = h * w;
-      area.value = bn.value ? double.parse(translator(a)) : a;
-      areapersent.value = bn.value
-          ? translator((a / 435.6).toPrecision(4))
-          : (a / 435.6).toPrecision(4);
-      areaperbigha.value = bn.value
-          ? translator((a / 14400).toPrecision(4))
-          : (a / 14400).toPrecision(4);
-      areaperkatha.value = bn.value
-          ? translator((a / 720).toPrecision(4))
-          : (a / 720).toPrecision(4);
-      print(area.value);
-    }
-  }
-
   translator(var text) {
+    // text = int.parse(text);
+    // late final String number;
+    // number = BanglaUtility.englishToBanglaDigit(englishDigit: text);
+    // print(number);
+    // return number;
     String m = '';
     text = text.toString();
     text.split('').forEach((element) {
@@ -115,5 +87,32 @@ class CalculationController extends GetxController {
     return m;
   }
 
-// create a function to convert bangla number to english number
+  @override
+  void onClose() {}
+  void calculateArea() {
+    if (Calculate_FormKey.currentState!.validate()) {
+      if (bn.value) {
+      } else {}
+      double h1 = double.parse(translator(height1.value.text));
+      double h2 = double.parse(translator(height2.value.text));
+      double w1 = double.parse(translator(width1.value.text));
+      double w2 = double.parse(translator(width2.value.text));
+      double h = (h1 + h2) / 2;
+      double w = (w1 + w2) / 2;
+      double a = h * w;
+      area.value = bn.value ? double.parse(translator(a)) : a;
+      areapersent.value = bn.value
+          ? translator((a / 435.6).toPrecision(4))
+          : (a / 435.6).toPrecision(4);
+      areaperbigha.value = bn.value
+          ? translator((a / 14400).toPrecision(4))
+          : (a / 14400).toPrecision(4);
+      areaperkatha.value = bn.value
+          ? translator((a / 720).toPrecision(4))
+          : (a / 720).toPrecision(4);
+      print(area.value);
+    }
+  }
+
+  //create a function to generate pdf with desire location
 }

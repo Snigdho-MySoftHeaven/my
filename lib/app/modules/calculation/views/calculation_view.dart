@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../Utils/formater.dart';
 import '../../../Utils/helper_functions.dart';
+import '../../../Utils/pdfGenerator.dart';
 import '../../../custom_widget/floatingButton.dart';
 import '../controllers/calculation_controller.dart';
 
@@ -48,7 +49,7 @@ class CalculationView extends GetView<CalculationController> {
                         borderRadius: BorderRadius.circular(5.r),
                         boxShadow: [
                           BoxShadow(
-                            color: Color(0xff92D45E),
+                            color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 1,
                             blurRadius: 7,
                             offset: Offset(0, 2), // changes position of shadow
@@ -81,15 +82,28 @@ class CalculationView extends GetView<CalculationController> {
                               children: [
                                 TextFormField(
                                   controller: controller.height1.value,
-                                  onChanged: (value) {
-                                    controller.height1.value.text =
-                                        translate(value);
-                                  },
                                   inputFormatters: [
-                                    bn.value
-                                        ? BanglaDigitInputFormatter()
-                                        : FilteringTextInputFormatter
-                                            .digitsOnly,
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    LengthLimitingTextInputFormatter(9),
+                                    TextInputFormatter.withFunction(
+                                        (oldValue, newValue) {
+                                      String convertedText =
+                                          convertToBengaliNumerals(
+                                              newValue.text);
+                                      print(convertedText.length);
+                                      return TextEditingValue(
+                                        text: convertedText,
+                                        selection: TextSelection.fromPosition(
+                                          TextPosition(
+                                              offset: convertedText.isNotEmpty
+                                                  ? newValue.text
+                                                          .split('')
+                                                          .length +
+                                                      1
+                                                  : 0),
+                                        ),
+                                      );
+                                    }),
                                   ],
                                   decoration: InputDecoration(
                                     constraints: BoxConstraints(
@@ -270,6 +284,7 @@ class CalculationView extends GetView<CalculationController> {
                     Positioned(
                         top: 0,
                         child: Container(
+                          width: Get.width * 0.6,
                           padding: EdgeInsets.all(15),
                           decoration: BoxDecoration(
                               color: Color(0xff348739),
@@ -286,38 +301,41 @@ class CalculationView extends GetView<CalculationController> {
                         )),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: Obx(() {
-                    if (controller.area.value != 0.0) {
-                      return Card(
-                        elevation: 10,
-                        margin: EdgeInsets.all(15),
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: Get.width - 20,
-                          padding: const EdgeInsets.symmetric(vertical: 20),
+                SizedBox(
+                  height: 20,
+                ),
+                Obx(() {
+                  if (controller.area.value != 0.0) {
+                    return Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 10, right: 10, top: 30),
+                          padding: const EdgeInsets.only(
+                              top: 20, bottom: 50, left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color(0xff92D45E),
+                              width: 1.sp,
+                            ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 7,
+                                offset:
+                                    Offset(0, 2), // changes position of shadow
+                              ),
+                            ],
+                          ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.only(left: 20, right: 20),
                             child: Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'মোট পরিমান'.tr,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                  color: Colors.black,
-                                ),
                                 SizedBox(
-                                  height: 10,
+                                  height: 50,
                                 ),
                                 Row(
                                   children: [
@@ -331,7 +349,7 @@ class CalculationView extends GetView<CalculationController> {
                                       ),
                                     ),
                                     Text(
-                                      ' :   ${translate(controller.area.value)} ${'বর্গ ফুট'.tr}',
+                                      '    ${translate(controller.area.value)} ${'বর্গ ফুট'.tr}',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
@@ -350,7 +368,7 @@ class CalculationView extends GetView<CalculationController> {
                                       ),
                                     ),
                                     Text(
-                                      ' :   ${translate(controller.areapersent.value)} ${'শতাংশ'.tr}',
+                                      '    ${translate(controller.areapersent.value)} ${'শতাংশ'.tr}',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
@@ -369,7 +387,7 @@ class CalculationView extends GetView<CalculationController> {
                                       ),
                                     ),
                                     Text(
-                                      ' :   ${translate(controller.areaperkatha.value)} ${'কাঠা'.tr}',
+                                      '    ${translate(controller.areaperkatha.value)} ${'কাঠা'.tr}',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
@@ -388,23 +406,50 @@ class CalculationView extends GetView<CalculationController> {
                                       ),
                                     ),
                                     Text(
-                                      ' :   ${translate(controller.areaperbigha.value)} ${'বিঘা'.tr}',
+                                      '    ${translate(controller.areaperbigha.value)} ${'বিঘা'.tr}',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: TextButton(
+                                    child: Text("Generate PDF"),
+                                    onPressed: () {
+                                      generatePDF();
+                                    },
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                         ),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  }),
-                ),
+                        Positioned(
+                            top: 0,
+                            child: Container(
+                              width: Get.width * 0.6,
+                              padding: EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                  color: Color(0xff348739),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: Text(
+                                'ফলাফল'.tr,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                      ],
+                    );
+                  } else {
+                    return Container();
+                  }
+                }),
               ],
             ),
           ),

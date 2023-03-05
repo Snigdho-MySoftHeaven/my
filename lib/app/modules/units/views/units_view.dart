@@ -125,16 +125,16 @@ class Heading_View extends StatelessWidget {
             spacing: 25.0,
             runSpacing: 10.0,
             children: [
-              for (var i = 0; i < data.keys.length; i++)
+              for (var i = 0; i < extra_data.keys.length; i++)
                 customCardView(
-                    text: data[data.keys.elementAt(i)]!
+                    text: extra_data[extra_data.keys.elementAt(i)]!
                         .split('</h2>')
                         .first
                         .split('<h2>')
                         .last,
                     onTap: () {
-                      controller.key.value = data.keys.elementAt(i);
-                      liststring(data[data.keys.elementAt(i)]!);
+                      controller.key.value = extra_data.keys.elementAt(i);
+                      liststring(extra_data[extra_data.keys.elementAt(i)]!);
                     }),
             ],
           ),
@@ -195,36 +195,46 @@ class Details_View extends StatelessWidget {
                             }),
                       ),
                     ),
-                    Card(
-                      elevation: 5.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(10.0),
-                        width: double.infinity,
-                        child: Html(
-                            data: keyList[index].last,
-                            shrinkWrap: true,
-                            style: {
-                              "html": Style(
-                                fontSize: FontSize(18.0),
-                              ),
-                              'p': Style(
-                                fontSize: FontSize(18.0),
-                              ),
-                              'h1': Style(
-                                fontSize: FontSize(20.0),
-                              ),
-                              'h2': Style(
-                                fontSize: FontSize(20.0),
-                              ),
-                              'br': Style(
-                                margin: EdgeInsets.only(bottom: 10.0),
-                              ),
-                            }),
-                      ),
-                    ),
+                    extra_data[controller.key.value]!.contains('img src=')
+                        ? InkWell(
+                            onTap: () async {
+                              ZoomImage(context, 'assets/images/img.png');
+                            },
+                            child: Image.asset(
+                              'assets/images/img.png',
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : Card(
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.all(10.0),
+                              width: double.infinity,
+                              child: Html(
+                                  data: keyList[index].last,
+                                  shrinkWrap: true,
+                                  style: {
+                                    "html": Style(
+                                      fontSize: FontSize(18.0),
+                                    ),
+                                    'p': Style(
+                                      fontSize: FontSize(18.0),
+                                    ),
+                                    'h1': Style(
+                                      fontSize: FontSize(20.0),
+                                    ),
+                                    'h2': Style(
+                                      fontSize: FontSize(20.0),
+                                    ),
+                                    'br': Style(
+                                      margin: EdgeInsets.only(bottom: 10.0),
+                                    ),
+                                  }),
+                            ),
+                          ),
                   ],
                 )
             ],

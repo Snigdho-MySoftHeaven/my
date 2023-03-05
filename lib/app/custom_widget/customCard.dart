@@ -3,13 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class customCardView extends StatelessWidget {
-  final String text;
-  final Function onTap;
   const customCardView({
     required this.text,
     required this.onTap,
     super.key,
   });
+
+  final Function onTap;
+  final String text;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
