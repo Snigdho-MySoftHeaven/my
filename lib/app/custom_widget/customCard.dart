@@ -18,14 +18,14 @@ class customCardView extends StatelessWidget {
       onTap: () => onTap(),
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
-        decoration: BoxDecoration(11111111111111111111
+        decoration: BoxDecoration(
           border: Border.all(
             color: Color(0xff92D45E),
             width: 1.sp,
           ),
           color: Colors.white,
           borderRadius: BorderRadius.circular(5.r),
-          // boxShadow: [
+          // boxShadow:
           //   BoxShadow(
           //     color: Colors.grey.withOpacity(0.5),
           //     spreadRadius: 1,
