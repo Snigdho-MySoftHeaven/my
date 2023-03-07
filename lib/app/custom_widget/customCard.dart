@@ -18,21 +18,21 @@ class customCardView extends StatelessWidget {
       onTap: () => onTap(),
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
-        decoration: BoxDecoration(
+        decoration: BoxDecoration(11111111111111111111
           border: Border.all(
             color: Color(0xff92D45E),
             width: 1.sp,
           ),
           color: Colors.white,
           borderRadius: BorderRadius.circular(5.r),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 7,
-              offset: Offset(0, 2), // changes position of shadow
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.grey.withOpacity(0.5),
+          //     spreadRadius: 1,
+          //     blurRadius: 3,
+          //     offset: Offset(0, 0.5), // changes position of shadow
+          //   ),
+          // ],
         ),
         height: 165.w,
         width: 150.w,

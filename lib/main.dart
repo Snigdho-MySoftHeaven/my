@@ -11,6 +11,7 @@ import 'app/Utils/const.dart';
 import 'app/Utils/helper_functions.dart';
 import 'app/Utils/language.dart';
 import 'app/routes/app_pages.dart';
+import 'screens/bottom_navbar/bottom_nav_bar.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,8 +45,8 @@ Future<void> main() async {
               fontFamily: bn.value ? 'kalpurush' : 'Roboto',
             ),
             title: "Application",
-            initialRoute: AppPages.INITIAL,
             getPages: AppPages.routes,
+            home: BottomNavBar(),
           );
         }),
   );

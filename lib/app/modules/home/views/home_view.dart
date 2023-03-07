@@ -10,7 +10,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff348739),
-        title: Text('title'.tr),
+        title: Text("অন্যান্য সেবা".tr),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

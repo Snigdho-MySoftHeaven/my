@@ -19,12 +19,13 @@ import 'package:vumi/app/modules/webView/views/web_view_view.dart';
 import 'package:vumi/app/modules/wordmeaning/bindings/wordmeaning_binding.dart';
 import 'package:vumi/app/modules/wordmeaning/views/wordmeaning_view.dart';
 
+import '../../screens/bottom_navbar/bottom_nav_bar.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
