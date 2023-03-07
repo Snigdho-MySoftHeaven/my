@@ -64,4 +64,7 @@ final BD = {
   ///////////////Language//////////////////////
   'English': 'ইংলিশ',
   'Bangla': 'বাংলা',
+  //////////////////QrCode//////////////////////
+  'Invalid QR Code, Please scan a valid QR Code':
+      'QR কোড সঠিক নয়, দয়া করে একটি সঠিক  QR কোড স্ক্যান করুন',
 };

@@ -13,51 +13,7 @@ class WordmeaningView extends GetView<WordmeaningController> {
     liststring(word_data);
     return Scaffold(
       appBar: PreferredSize(
-          child: Container(
-            padding: EdgeInsets.only(top: 20.h),
-            decoration: BoxDecoration(
-                color: Color(0xff348739),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(15),
-                    bottomRight: Radius.circular(15))),
-            alignment: Alignment.center,
-            height: 136.h,
-            width: Get.width,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: IconButton(
-                      onPressed: () => Get.back(),
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                      ),
-                    )),
-                Expanded(
-                  child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(left: 20, right: 10),
-                        child: Text(
-                          keyList.first.first
-                              .split('</h2>')
-                              .first
-                              .split('<h2>')
-                              .last,
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                      )),
-                ),
-              ],
-            ),
-          ),
+          child: appBarView(),
           preferredSize: Size(Get.width, 136.h)),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 10.0),
@@ -71,66 +27,8 @@ class WordmeaningView extends GetView<WordmeaningController> {
                   for (int index = 0; index < keyList.length; index++)
                     Column(
                       children: [
-                        Card(
-                          elevation: 5.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.all(10.0),
-                            width: double.infinity,
-                            child: Html(
-                                data: keyList[index].first,
-                                shrinkWrap: true,
-                                style: {
-                                  "html": Style(
-                                    fontSize: FontSize(18.0),
-                                  ),
-                                  'p': Style(
-                                    fontSize: FontSize(18.0),
-                                  ),
-                                  'h1': Style(
-                                    fontSize: FontSize(20.0),
-                                  ),
-                                  'h2': Style(
-                                      fontSize: FontSize(20.0),
-                                      color: Color(0xFF348739)),
-                                  'br': Style(
-                                    margin: EdgeInsets.only(bottom: 10.0),
-                                  ),
-                                }),
-                          ),
-                        ),
-                        Card(
-                          elevation: 5.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.all(10.0),
-                            width: double.infinity,
-                            child: Html(
-                                data: keyList[index].last,
-                                shrinkWrap: true,
-                                style: {
-                                  "html": Style(
-                                    fontSize: FontSize(18.0),
-                                  ),
-                                  'p': Style(
-                                    fontSize: FontSize(18.0),
-                                  ),
-                                  'h1': Style(
-                                    fontSize: FontSize(20.0),
-                                  ),
-                                  'h2': Style(
-                                    fontSize: FontSize(20.0),
-                                  ),
-                                  'br': Style(
-                                    margin: EdgeInsets.only(bottom: 10.0),
-                                  ),
-                                }),
-                          ),
-                        ),
+                        headingView(index: index),
+                        contentView(index: index),
                       ],
                     )
                 ],
@@ -138,6 +36,147 @@ class WordmeaningView extends GetView<WordmeaningController> {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class contentView extends StatelessWidget {
+  const contentView({
+    super.key,
+    required this.index,
+  });
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 5.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        width: double.infinity,
+        child: Html(
+            data: keyList[index].last,
+            shrinkWrap: true,
+            style: {
+              "html": Style(
+                fontSize: FontSize(18.0),
+              ),
+              'p': Style(
+                fontSize: FontSize(18.0),
+              ),
+              'h1': Style(
+                fontSize: FontSize(20.0),
+              ),
+              'h2': Style(
+                fontSize: FontSize(20.0),
+              ),
+              'br': Style(
+                margin: EdgeInsets.only(bottom: 10.0),
+              ),
+            }),
+      ),
+    );
+  }
+}
+
+class headingView extends StatelessWidget {
+  const headingView({
+    super.key,
+    required this.index,
+  });
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 5.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        width: double.infinity,
+        child: Html(
+            data: keyList[index].first,
+            shrinkWrap: true,
+            style: {
+              "html": Style(
+                fontSize: FontSize(18.0),
+              ),
+              'p': Style(
+                fontSize: FontSize(18.0),
+              ),
+              'h1': Style(
+                fontSize: FontSize(20.0),
+              ),
+              'h2': Style(
+                  fontSize: FontSize(20.0),
+                  color: Color(0xFF348739)),
+              'br': Style(
+                margin: EdgeInsets.only(bottom: 10.0),
+              ),
+            }),
+      ),
+    );
+  }
+}
+
+class appBarView extends StatelessWidget {
+  const appBarView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 20.h),
+      decoration: BoxDecoration(
+          color: Color(0xff348739),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              bottomRight: Radius.circular(15))),
+      alignment: Alignment.center,
+      height: 136.h,
+      width: Get.width,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: IconButton(
+                onPressed: () => Get.back(),
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                ),
+              )),
+          Expanded(
+            child: Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.only(left: 20, right: 10),
+                  child: Text(
+                    keyList.first.first
+                        .split('</h2>')
+                        .first
+                        .split('<h2>')
+                        .last,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
+                  ),
+                )),
+          ),
+        ],
       ),
     );
   }

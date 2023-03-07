@@ -9,7 +9,14 @@ class QrcoodeController extends GetxController {
   Rx<Barcode?> result = Rx<Barcode?>(null);
   QRViewController? qrcontroller;
   final count = 0.obs;
-
+  final error = false.obs;
+  final errormsg = ''.obs;
+  @override
+  void onInit() {
+    errormsg.value = '';
+    error.value = false;
+    super.onInit();
+  }
 
   Future<void> permission() async {
     var status = await Permission.camera.status;
@@ -53,17 +60,18 @@ class QrcoodeController extends GetxController {
     controller.scannedDataStream.listen((scanData) {
       if (scanData.code!.isNotEmpty) {
         qrcontroller?.pauseCamera();
-        if (scanData.code!.contains('http')) {
-          result.value = scanData;
-          print(result.value!.code);
+        result.value = scanData;
+        if (scanData.code!.contains('https://ldtax.gov.bd/ldtax-holdings')) {
+          error.value = false;
+          errormsg.value = '';
           Get.toNamed(
             '/web-view',
             arguments: result.value!.code,
           );
         } else {
-          qrcontroller?.resumeCamera();
-          result.value = null;
-          Get.snackbar('Invalid QR Code', 'Please scan a valid QR Code');
+          qrcontroller?.pauseCamera();
+          error.value = true;
+          errormsg.value = 'Invalid QR Code, Please scan a valid QR Code'.tr;
         }
       }
       update();

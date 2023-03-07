@@ -23,6 +23,8 @@ dependencies:
   path: any
   path_provider: 2.0.13
   open_filex: 4.3.2
+  flutter_downloader: 1.10.2
+  printing: any
   flutter: 
     sdk: flutter
   flutter_localizations: 
@@ -50,7 +52,7 @@ flutter:
       fonts: 
         - asset: assets/fonts/kalpurush/kalpurush.ttf
     - family: Nikosh
-      fonts:
+      fonts: 
         - asset: assets/fonts/kalpurush/Nikosh.ttf
   generate: true
   uses-material-design: true

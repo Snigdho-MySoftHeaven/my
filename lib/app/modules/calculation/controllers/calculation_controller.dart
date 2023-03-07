@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../Utils/helper_functions.dart';
 
@@ -27,6 +28,7 @@ class CalculationController extends GetxController {
     width1.value.text = '';
     width2.value.text = '';
     bn.value = Get.locale!.languageCode == 'bn';
+    super.onInit();
   }
 
   @override
@@ -107,5 +109,14 @@ class CalculationController extends GetxController {
     }
   }
 
+  final _englishNumberFormat = NumberFormat.decimalPattern('en_US');
+  final _bengaliNumberFormat = NumberFormat.decimalPattern('bn_BD');
+
+  String formatPhoneNumber(String phoneNumber) {
+    final formattedNumber =
+        bn.value ? _bengaliNumberFormat : _englishNumberFormat;
+    final parsedNumber = int.tryParse(phoneNumber) ?? 0;
+    return formattedNumber.format(parsedNumber);
+  }
   //create a function to generate pdf with desire location
 }

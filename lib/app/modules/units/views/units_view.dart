@@ -14,77 +14,7 @@ class UnitsView extends GetView<UnitsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: Obx(
-            () => Container(
-              padding: controller.key.value.isEmpty
-                  ? EdgeInsets.only(top: 30.h)
-                  : EdgeInsets.only(top: 20.h),
-              decoration: BoxDecoration(
-                  color: Color(0xff348739),
-                  borderRadius: controller.key.value.isEmpty
-                      ? BorderRadius.zero
-                      : BorderRadius.only(
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15))),
-              alignment: Alignment.center,
-              height: controller.key.value.isEmpty ? 75.h : 136.h,
-              width: Get.width,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Obx(() => controller.key.value.isEmpty
-                        ? IconButton(
-                            onPressed: () => Get.back(),
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                            ),
-                          )
-                        : IconButton(
-                            onPressed: () {
-                              controller.key.value = '';
-                            },
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                            ),
-                          )),
-                  ),
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Obx(() => controller.key.value.isEmpty
-                        ? Text(
-                            'জমির একক জানুন'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white),
-                          )
-                        : Container(
-                            alignment: Alignment.center,
-                            margin: EdgeInsets.only(left: 20, right: 10),
-                            child: Text(
-                              keyList.first.first
-                                  .split('</h2>')
-                                  .first
-                                  .split('<h2>')
-                                  .last,
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white),
-                            ),
-                          )),
-                  )),
-                ],
-              ),
-            ),
-          ),
+          child: appBarView(controller: controller),
           preferredSize: Size(Get.width, 136.h)),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
@@ -97,6 +27,90 @@ class UnitsView extends GetView<UnitsController> {
             Details_View(
               controller: controller,
             )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class appBarView extends StatelessWidget {
+  const appBarView({
+    super.key,
+    required this.controller,
+  });
+
+  final UnitsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Container(
+        padding: controller.key.value.isEmpty
+            ? EdgeInsets.only(top: 30.h)
+            : EdgeInsets.only(top: 20.h),
+        decoration: BoxDecoration(
+            color: Color(0xff348739),
+            borderRadius: controller.key.value.isEmpty
+                ? BorderRadius.zero
+                : BorderRadius.only(
+                    bottomLeft: Radius.circular(15),
+                    bottomRight: Radius.circular(15))),
+        alignment: Alignment.center,
+        height: controller.key.value.isEmpty ? 75.h : 136.h,
+        width: Get.width,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Obx(() => controller.key.value.isEmpty
+                  ? IconButton(
+                      onPressed: () => Get.back(),
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                      ),
+                    )
+                  : IconButton(
+                      onPressed: () {
+                        controller.key.value = '';
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                      ),
+                    )),
+            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Obx(() => controller.key.value.isEmpty
+                  ? Text(
+                      'জমির একক জানুন'.tr,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    )
+                  : Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(left: 20, right: 10),
+                      child: Text(
+                        keyList.first.first
+                            .split('</h2>')
+                            .first
+                            .split('<h2>')
+                            .last,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      ),
+                    )),
+            )),
           ],
         ),
       ),
@@ -162,76 +176,8 @@ class Details_View extends StatelessWidget {
               for (int index = 0; index < keyList.length; index++)
                 Column(
                   children: [
-                    Card(
-                      elevation: 5.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(10.0),
-                        width: double.infinity,
-                        child: Html(
-                            data: keyList[index].first,
-                            shrinkWrap: true,
-                            style: {
-                              "html": Style(
-                                fontSize: FontSize(18.0),
-                              ),
-                              'p': Style(
-                                fontSize: FontSize(18.0),
-                              ),
-                              'h1': Style(
-                                fontSize: FontSize(20.0),
-                              ),
-                              'h2': Style(
-                                  fontSize: FontSize(20.0),
-                                  color: Color(0xFF348739)),
-                              'br': Style(
-                                margin: EdgeInsets.only(bottom: 10.0),
-                              ),
-                            }),
-                      ),
-                    ),
-                    extra_data[controller.key.value]!.contains('img src=')
-                        ? InkWell(
-                            onTap: () async {
-                              ZoomImage(context, 'assets/images/img.png');
-                            },
-                            child: Image.asset(
-                              'assets/images/img.png',
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                        : Card(
-                            elevation: 5.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              width: double.infinity,
-                              child: Html(
-                                  data: keyList[index].last,
-                                  shrinkWrap: true,
-                                  style: {
-                                    "html": Style(
-                                      fontSize: FontSize(18.0),
-                                    ),
-                                    'p': Style(
-                                      fontSize: FontSize(18.0),
-                                    ),
-                                    'h1': Style(
-                                      fontSize: FontSize(20.0),
-                                    ),
-                                    'h2': Style(
-                                      fontSize: FontSize(20.0),
-                                    ),
-                                    'br': Style(
-                                      margin: EdgeInsets.only(bottom: 10.0),
-                                    ),
-                                  }),
-                            ),
-                          ),
+                    detailsHeadingView(index: index),
+                    detailsContentView(index: index, controller: controller),
                   ],
                 )
             ],
@@ -242,5 +188,95 @@ class Details_View extends StatelessWidget {
         height: 0.0,
       );
     });
+  }
+}
+
+class detailsContentView extends StatelessWidget {
+  const detailsContentView({
+    super.key,
+    required this.index,
+    required this.controller,
+  });
+
+  final int index;
+  final UnitsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return extra_data[controller.key.value]!.contains('img src=')
+        ? InkWell(
+            onTap: () async {
+              ZoomImage(context, 'assets/images/img.png');
+            },
+            child: Image.asset(
+              'assets/images/img.png',
+              fit: BoxFit.cover,
+            ),
+          )
+        : Card(
+            elevation: 5.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              width: double.infinity,
+              child: Html(data: keyList[index].last, shrinkWrap: true, style: {
+                "html": Style(
+                  fontSize: FontSize(18.0),
+                ),
+                'p': Style(
+                  fontSize: FontSize(18.0),
+                ),
+                'h1': Style(
+                  fontSize: FontSize(20.0),
+                ),
+                'h2': Style(
+                  fontSize: FontSize(20.0),
+                ),
+                'br': Style(
+                  margin: EdgeInsets.only(bottom: 10.0),
+                ),
+              }),
+            ),
+          );
+  }
+}
+
+class detailsHeadingView extends StatelessWidget {
+  const detailsHeadingView({
+    super.key,
+    required this.index,
+  });
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 5.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        width: double.infinity,
+        child: Html(data: keyList[index].first, shrinkWrap: true, style: {
+          "html": Style(
+            fontSize: FontSize(18.0),
+          ),
+          'p': Style(
+            fontSize: FontSize(18.0),
+          ),
+          'h1': Style(
+            fontSize: FontSize(20.0),
+          ),
+          'h2': Style(fontSize: FontSize(20.0), color: Color(0xFF348739)),
+          'br': Style(
+            margin: EdgeInsets.only(bottom: 10.0),
+          ),
+        }),
+      ),
+    );
   }
 }

@@ -8,22 +8,7 @@ class ExtraView extends GetView<ExtraController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff348739),
-        leading: Obx(() => controller.key.value.isEmpty
-            ? IconButton(
-                onPressed: () => Get.back(),
-                icon: Icon(Icons.arrow_back_ios),
-              )
-            : IconButton(
-                onPressed: () {
-                  controller.key.value = '';
-                },
-                icon: Icon(Icons.arrow_back_ios),
-              )),
-        title: Text('বিবিধ'.tr),
-        centerTitle: true,
-      ),
+      appBar: appBarView(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(
@@ -50,6 +35,25 @@ class ExtraView extends GetView<ExtraController> {
           ],
         ),
       ),
+    );
+  }
+
+  AppBar appBarView() {
+    return AppBar(
+      backgroundColor: Color(0xff348739),
+      leading: Obx(() => controller.key.value.isEmpty
+          ? IconButton(
+              onPressed: () => Get.back(),
+              icon: Icon(Icons.arrow_back_ios),
+            )
+          : IconButton(
+              onPressed: () {
+                controller.key.value = '';
+              },
+              icon: Icon(Icons.arrow_back_ios),
+            )),
+      title: Text('বিবিধ'.tr),
+      centerTitle: true,
     );
   }
 }

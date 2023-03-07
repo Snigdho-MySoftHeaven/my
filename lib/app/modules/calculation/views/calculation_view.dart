@@ -30,412 +30,468 @@ class CalculationView extends GetView<CalculationController> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 10, right: 10, top: 30),
-                      padding: const EdgeInsets.only(
-                          top: 40, bottom: 20, left: 10, right: 10),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Color(0xff92D45E),
-                          width: 1.sp,
-                        ),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5.r),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 7,
-                            offset: Offset(0, 2), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.only(top: 20),
-                        child: Wrap(
-                          direction: Axis.horizontal,
-                          runSpacing: 30,
-                          spacing: 10,
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Text(
-                                    'প্রথম জমি'.tr,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        fontSize: 20.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xff92D45E)),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                TextFormField(
-                                  controller: controller.height1.value,
-                                  inputFormatters: [
-                                    bn.value
-                                        ? BanglaDigitInputFormatter()
-                                        : FilteringTextInputFormatter
-                                            .digitsOnly,
-                                  ],
-                                  decoration: InputDecoration(
-                                    constraints: BoxConstraints(
-                                      maxWidth: Get.width * 0.4,
-                                    ),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(6),
-                                        borderSide: const BorderSide(
-                                            color: Colors.blue, width: 1)),
-                                    labelText: 'প্রথম দৈর্ঘ্য'.tr,
-                                    hintText: 'প্রথম দৈর্ঘ্য'.tr + '( ফুট )'.tr,
-                                  ),
-                                  keyboardType: TextInputType.number,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'প্রথম দৈর্ঘ্য প্রদান করুন'.tr;
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                TextFormField(
-                                  controller: controller.width1.value,
-                                  inputFormatters: [
-                                    bn.value
-                                        ? BanglaDigitInputFormatter()
-                                        : FilteringTextInputFormatter
-                                            .digitsOnly,
-                                  ],
-                                  decoration: InputDecoration(
-                                    constraints: BoxConstraints(
-                                      maxWidth: Get.width * 0.4,
-                                    ),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(6),
-                                        borderSide: const BorderSide(
-                                            color: Colors.blue, width: 1)),
-                                    labelText: 'প্রথম প্রস্থ'.tr,
-                                    hintText: 'প্রথম প্রস্থ'.tr + '( ফুট )'.tr,
-                                  ),
-                                  keyboardType: TextInputType.number,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'প্রথম প্রস্থ প্রদান করুন'.tr;
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Text(
-                                    'দ্বিতীয় জমি'.tr,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        fontSize: 20.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xff92D45E)),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                TextFormField(
-                                  controller: controller.height2.value,
-                                  inputFormatters: [
-                                    bn.value
-                                        ? BanglaDigitInputFormatter()
-                                        : FilteringTextInputFormatter
-                                            .digitsOnly,
-                                  ],
-                                  decoration: InputDecoration(
-                                    constraints: BoxConstraints(
-                                      maxWidth: Get.width * 0.4,
-                                    ),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(6),
-                                        borderSide: const BorderSide(
-                                            color: Colors.blue, width: 1)),
-                                    labelText: 'দ্বিতীয় দৈর্ঘ্য'.tr,
-                                    hintText:
-                                        ('দ্বিতীয় দৈর্ঘ্য'.tr + '( ফুট )'.tr),
-                                  ),
-                                  keyboardType: TextInputType.number,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'দ্বিতীয় দৈর্ঘ্য প্রদান করুন'.tr;
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                TextFormField(
-                                  controller: controller.width2.value,
-                                  inputFormatters: [
-                                    bn.value
-                                        ? BanglaDigitInputFormatter()
-                                        : FilteringTextInputFormatter
-                                            .digitsOnly,
-                                  ],
-                                  decoration: InputDecoration(
-                                    constraints: BoxConstraints(
-                                      maxWidth: Get.width * 0.4,
-                                    ),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(6),
-                                        borderSide: const BorderSide(
-                                            color: Colors.blue, width: 1)),
-                                    labelText: 'দ্বিতীয় প্রস্থ'.tr,
-                                    hintText:
-                                        ('দ্বিতীয় প্রস্থ'.tr + '( ফুট )'.tr),
-                                  ),
-                                  keyboardType: TextInputType.number,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'দ্বিতীয় প্রস্থ প্রদান করুন'.tr;
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xff348739),
-                                      padding: EdgeInsets.all(12),
-                                      minimumSize: Size(150, 50),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                    ),
-                                    onPressed: () {
-                                      controller.Calculate_FormKey.currentState!
-                                          .reset();
-                                      controller.clear();
-                                    },
-                                    child: Text('পরিস্কার করুন'.tr,
-                                        style: TextStyle(fontSize: 20)),
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xff348739),
-                                      minimumSize: Size(150, 50),
-                                      padding: EdgeInsets.all(12),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                    ),
-                                    onPressed: () {
-                                      controller.Calculate_FormKey.currentState!
-                                          .save();
-                                      controller.Calculate_FormKey.currentState!
-                                          .validate();
-                                      controller.calculateArea();
-                                    },
-                                    child: Text('হিসাব করুন'.tr,
-                                        style: TextStyle(fontSize: 20)),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                        top: 0,
-                        child: Container(
-                          width: Get.width * 0.6,
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: Color(0xff348739),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: Text(
-                            'ভূমি পরিমাপ ক্যালকুলেটর'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Obx(() {
-                  if (controller.area.value != 0.0) {
-                    return Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(left: 10, right: 10, top: 30),
-                          padding: const EdgeInsets.only(
-                              top: 20, bottom: 50, left: 10, right: 10),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color(0xff92D45E),
-                              width: 1.sp,
-                            ),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5.r),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 7,
-                                offset:
-                                    Offset(0, 2), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 50,
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: Get.width * 0.4,
-                                      child: Text(
-                                        'মোট ক্ষেত্রফল'.tr,
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Text(
-                                      '    ${translate(controller.area.value)} ${'বর্গ ফুট'.tr}',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: Get.width * 0.4,
-                                      child: Text(
-                                        'মোট শতাংশ'.tr,
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Text(
-                                      '    ${translate(controller.areapersent.value)} ${'শতাংশ'.tr}',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: Get.width * 0.4,
-                                      child: Text(
-                                        'মোট কাঠা'.tr,
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Text(
-                                      '    ${translate(controller.areaperkatha.value)} ${'কাঠা'.tr}',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: Get.width * 0.4,
-                                      child: Text(
-                                        'মোট বিঘা'.tr,
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Text(
-                                      '    ${translate(controller.areaperbigha.value)} ${'বিঘা'.tr}',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: TextButton(
-                                    child: Text("Generate PDF"),
-                                    onPressed: () {
-                                      generatePDF();
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                            top: 0,
-                            child: Container(
-                              width: Get.width * 0.6,
-                              padding: EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                  color: Color(0xff348739),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              child: Text(
-                                'ফলাফল'.tr,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )),
-                      ],
-                    );
-                  } else {
-                    return Container();
-                  }
-                }),
+                calculationFormView(controller: controller),
+                calculationResultView(controller: controller),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class calculationResultView extends StatelessWidget {
+  const calculationResultView({
+    super.key,
+    required this.controller,
+  });
+
+  final CalculationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (controller.area.value != 0.0) {
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: 10, right: 10, top: 30),
+              padding: const EdgeInsets.only(
+                  top: 20, bottom: 50, left: 10, right: 10),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color(0xff92D45E),
+                  width: 1.sp,
+                ),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 7,
+                    offset: Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: Get.width * 0.4,
+                          child: Text(
+                            'মোট ক্ষেত্রফল'.tr,
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Text(
+                          '    ${translate(controller.area.value)} ${'বর্গ ফুট'.tr}',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: Get.width * 0.4,
+                          child: Text(
+                            'মোট শতাংশ'.tr,
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Text(
+                          '    ${translate(controller.areapersent.value)} ${'শতাংশ'.tr}',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: Get.width * 0.4,
+                          child: Text(
+                            'মোট কাঠা'.tr,
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Text(
+                          '    ${translate(controller.areaperkatha.value)} ${'কাঠা'.tr}',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: Get.width * 0.4,
+                          child: Text(
+                            'মোট বিঘা'.tr,
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Text(
+                          '    ${translate(controller.areaperbigha.value)} ${'বিঘা'.tr}',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: TextButton(
+                        child: Text("Generate PDF"),
+                        onPressed: () async {
+                          await Get.updateLocale(Locale('en'))
+                              .then((value) => generatePDF())
+                              .then((value) => Get.updateLocale(
+                                  Locale(bn.value ? 'bn' : 'en')));
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+                top: 0,
+                child: Container(
+                  width: Get.width * 0.6,
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                      color: Color(0xff348739),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Text(
+                    'ফলাফল'.tr,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )),
+          ],
+        );
+      } else {
+        return Container();
+      }
+    });
+  }
+}
+
+class calculationFormView extends StatelessWidget {
+  const calculationFormView({
+    super.key,
+    required this.controller,
+  });
+
+  final CalculationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: 10, right: 10, top: 30),
+              padding: const EdgeInsets.only(
+                  top: 40, bottom: 20, left: 10, right: 10),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color(0xff92D45E),
+                  width: 1.sp,
+                ),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 7,
+                    offset: Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Container(
+                padding: EdgeInsets.only(top: 20),
+                child: Wrap(
+                  direction: Axis.horizontal,
+                  runSpacing: 30,
+                  spacing: 10,
+                  children: [
+                    firstLandFormView(controller: controller),
+                    secondLandFormView(controller: controller),
+                    resultOrClearButtonView(controller: controller),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+                top: 0,
+                child: Container(
+                  width: Get.width * 0.6,
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                      color: Color(0xff348739),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Text(
+                    'ভূমি পরিমাপ ক্যালকুলেটর'.tr,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+      ],
+    );
+  }
+}
+
+class resultOrClearButtonView extends StatelessWidget {
+  const resultOrClearButtonView({
+    super.key,
+    required this.controller,
+  });
+
+  final CalculationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xff348739),
+              padding: EdgeInsets.all(12),
+              minimumSize: Size(150, 50),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+            ),
+            onPressed: () {
+              controller.Calculate_FormKey.currentState!.reset();
+              controller.clear();
+            },
+            child: Text('পরিস্কার করুন'.tr, style: TextStyle(fontSize: 20)),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xff348739),
+              minimumSize: Size(150, 50),
+              padding: EdgeInsets.all(12),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+            ),
+            onPressed: () {
+              controller.Calculate_FormKey.currentState!.save();
+              controller.Calculate_FormKey.currentState!.validate();
+              controller.calculateArea();
+            },
+            child: Text('হিসাব করুন'.tr, style: TextStyle(fontSize: 20)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class secondLandFormView extends StatelessWidget {
+  const secondLandFormView({
+    super.key,
+    required this.controller,
+  });
+
+  final CalculationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                'দ্বিতীয় জমি'.tr,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xff92D45E)),
+              ),
+            )
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextFormField(
+              controller: controller.height2.value,
+              inputFormatters: [
+                bn.value
+                    ? BanglaDigitInputFormatter()
+                    : FilteringTextInputFormatter.digitsOnly,
+              ],
+              decoration: InputDecoration(
+                constraints: BoxConstraints(
+                  maxWidth: Get.width * 0.4,
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide: const BorderSide(color: Colors.blue, width: 1)),
+                labelText: 'দ্বিতীয় দৈর্ঘ্য'.tr,
+                hintText: ('দ্বিতীয় দৈর্ঘ্য'.tr + '( ফুট )'.tr),
+              ),
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'দ্বিতীয় দৈর্ঘ্য প্রদান করুন'.tr;
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              controller: controller.width2.value,
+              inputFormatters: [
+                bn.value
+                    ? BanglaDigitInputFormatter()
+                    : FilteringTextInputFormatter.digitsOnly,
+              ],
+              decoration: InputDecoration(
+                constraints: BoxConstraints(
+                  maxWidth: Get.width * 0.4,
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide: const BorderSide(color: Colors.blue, width: 1)),
+                labelText: 'দ্বিতীয় প্রস্থ'.tr,
+                hintText: ('দ্বিতীয় প্রস্থ'.tr + '( ফুট )'.tr),
+              ),
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'দ্বিতীয় প্রস্থ প্রদান করুন'.tr;
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class firstLandFormView extends StatelessWidget {
+  const firstLandFormView({
+    super.key,
+    required this.controller,
+  });
+
+  final CalculationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                'প্রথম জমি'.tr,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xff92D45E)),
+              ),
+            )
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextFormField(
+              controller: controller.height1.value,
+              inputFormatters: [
+                bn.value
+                    ? BanglaDigitInputFormatter()
+                    : FilteringTextInputFormatter.digitsOnly,
+              ],
+              decoration: InputDecoration(
+                constraints: BoxConstraints(
+                  maxWidth: Get.width * 0.4,
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide: const BorderSide(color: Colors.blue, width: 1)),
+                labelText: 'প্রথম দৈর্ঘ্য'.tr,
+                hintText: 'প্রথম দৈর্ঘ্য'.tr + '( ফুট )'.tr,
+              ),
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'প্রথম দৈর্ঘ্য প্রদান করুন'.tr;
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              controller: controller.width1.value,
+              inputFormatters: [
+                bn.value
+                    ? BanglaDigitInputFormatter()
+                    : FilteringTextInputFormatter.digitsOnly,
+              ],
+              decoration: InputDecoration(
+                constraints: BoxConstraints(
+                  maxWidth: Get.width * 0.4,
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide: const BorderSide(color: Colors.blue, width: 1)),
+                labelText: 'প্রথম প্রস্থ'.tr,
+                hintText: 'প্রথম প্রস্থ'.tr + '( ফুট )'.tr,
+              ),
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'প্রথম প্রস্থ প্রদান করুন'.tr;
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

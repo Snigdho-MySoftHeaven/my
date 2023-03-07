@@ -19,30 +19,44 @@ class SettingsView extends GetView<SettingsController> {
         title: Text('settings'.tr),
         centerTitle: true,
       ),
-      body: Obx(
-        () => Column(
-          children: [
-            ListTile(
-              title: Text(
-                'English'.tr,
-                style: TextStyle(fontWeight: bn.value ? null : FontWeight.bold),
-              ),
-              onTap: () {
-                controller.setLanguage('en');
-                bn.value = false;
-              },
+      body: languageChangeButtonView(controller: controller),
+    );
+  }
+}
+
+class languageChangeButtonView extends StatelessWidget {
+  const languageChangeButtonView({
+    super.key,
+    required this.controller,
+  });
+
+  final SettingsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Column(
+        children: [
+          ListTile(
+            title: Text(
+              'English'.tr,
+              style: TextStyle(fontWeight: bn.value ? null : FontWeight.bold),
             ),
-            ListTile(
-              title: Text('Bangla'.tr,
-                  style:
-                      TextStyle(fontWeight: bn.value ? FontWeight.bold : null)),
-              onTap: () {
-                controller.setLanguage('bn');
-                bn.value = true;
-              },
-            ),
-          ],
-        ),
+            onTap: () {
+              controller.setLanguage('en');
+              bn.value = false;
+            },
+          ),
+          ListTile(
+            title: Text('Bangla'.tr,
+                style:
+                    TextStyle(fontWeight: bn.value ? FontWeight.bold : null)),
+            onTap: () {
+              controller.setLanguage('bn');
+              bn.value = true;
+            },
+          ),
+        ],
       ),
     );
   }

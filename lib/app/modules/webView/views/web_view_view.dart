@@ -9,20 +9,7 @@ class WebViewView extends GetView<WebViewController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          appBar: AppBar(
-              backgroundColor: Color(0xff348739),
-              title: Text(
-                controller.url.value,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              centerTitle: true,
-              leading: IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () {
-                  Get.back();
-                },
-              )),
+          appBar: appBar(controller: controller),
           body: InAppWebView(
             initialUrlRequest: URLRequest(url: Uri.parse(controller.url.value)),
             initialOptions: InAppWebViewGroupOptions(
@@ -37,6 +24,13 @@ class WebViewView extends GetView<WebViewController> {
                 useOnDownloadStart: true,
               ),
             ),
+            onDownloadStartRequest: (controller, url) async {
+              // Get.toNamed(
+              //   '/web-view',
+              //   arguments: url.url.toString(),
+              // );
+              this.controller.loadDocument(url.url.toString());
+            },
             onWebViewCreated: controller.onWebViewCreated,
             onLoadStart: (controller, url) =>
                 this.controller.onPageStarted(url.toString()),
@@ -57,6 +51,33 @@ class WebViewView extends GetView<WebViewController> {
               }
             },
           ),
+        ),);
+  }
+}
+
+class appBar extends AppBar {
+  appBar({
+    super.key,
+    required this.controller,
+  });
+
+  final WebViewController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+        backgroundColor: Color(0xff348739),
+        title: Text(
+          controller.url.value,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.close),
+          onPressed: () {
+            Get.back();
+          },
         ));
   }
 }

@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:open_filex/open_filex.dart';
+import 'package:path_provider/path_provider.dart';
 
 class WebViewController extends GetxController {
   //TODO: Implement WebViewController
@@ -33,5 +38,13 @@ class WebViewController extends GetxController {
     Future.delayed(Duration(milliseconds: 600), () {
       EasyLoading.dismiss();
     });
+  }
+
+  Future<void> loadDocument(String url) async {
+    final response = await http.get(Uri.parse(url));
+    final output = await getApplicationDocumentsDirectory();
+    final file = File("${output.path}/result.pdf");
+    await file.writeAsBytes(response.bodyBytes);
+    await OpenFilex.open(file.path);
   }
 }

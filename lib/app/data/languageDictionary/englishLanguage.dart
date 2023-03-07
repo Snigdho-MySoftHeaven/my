@@ -75,4 +75,7 @@ final enUs = {
   /////////////////Language/////////////////////
   'English': 'English',
   'Bangla': 'Bangla',
+  ////////////////Qr Code///////////////////////
+  'Invalid QR Code, Please scan a valid QR Code':
+      'Invalid QR Code, Please scan a valid QR Code',
 };
