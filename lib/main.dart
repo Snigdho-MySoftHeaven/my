@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,18 +14,7 @@ import 'app/routes/app_pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  LicenseRegistry.addLicense(() async* {
-    final license =
-        await rootBundle.loadString('assets/fonts/Roboto/LICENSE.txt');
-    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-  });
-  await FlutterDownloader.initialize(
-      debug: true // optional: set false to disable printing logs to console
-      );
-  await initTranslations();
-  await GetStorage.init();
-  configLoading();
-  bn.value = await GetStorage().read('language') != 'bn' ? true : false;
+  await init();
 
   runApp(
     ScreenUtilInit(
@@ -63,6 +51,14 @@ Future<void> main() async {
   );
 }
 
-Future<void> initTranslations() async {
+Future<void> init() async {
   await Get.putAsync(() => LocalizationService().init());
+  LicenseRegistry.addLicense(() async* {
+    final license =
+        await rootBundle.loadString('assets/fonts/Roboto/LICENSE.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
+  await GetStorage.init();
+  configLoading();
+  bn.value = await GetStorage().read('language') != 'bn' ? true : false;
 }
