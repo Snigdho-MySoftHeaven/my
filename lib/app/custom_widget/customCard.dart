@@ -36,58 +36,63 @@ class customCardView extends StatelessWidget {
         ),
         height: 165.w,
         width: 150.w,
-        child: Column(
+        child: Stack(
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: 22.5.w, bottom: 5),
-              child: Image.asset(
-                "assets/images/icon_all_seba.png",
-                width: 70,
-                height: 60,
-                fit: BoxFit.fill,
-              ),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 15.w),
+                  child: Image.asset(
+                    "assets/images/icon_all_seba.png",
+                    width: 70,
+                    height: 60,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    alignment: Alignment.center,
+                    child: Text(text.tr,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400)),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              flex: 4,
+            Positioned(
+              right: 0,
+              bottom: 0,
               child: Container(
-                width: 150.h,
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                alignment: Alignment.center,
-                child: Text(text.tr,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 14.sp,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400)),
-              ),
-            ),
-            Spacer(),
-            Container(
-              padding: EdgeInsets.only(right: 2.w, bottom: 2.w),
-              height: 35.h,
-              width: Get.width,
-              alignment: Alignment.bottomRight,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                      height: 20.h,
-                      width: 21.w,
-                      decoration: BoxDecoration(
-                        color: Color(0xff92D45E),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(55.r),
-                            bottomRight: Radius.circular(5.r)),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 5.w),
-                        child: Icon(
-                          Icons.arrow_forward,
-                          size: 10.sp,
-                          color: Colors.white,
+                padding: EdgeInsets.only(right: 2.w, bottom: 2.w),
+                height: 35.h,
+                width: Get.width,
+                alignment: Alignment.bottomRight,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        height: 20.h,
+                        width: 21.w,
+                        decoration: BoxDecoration(
+                          color: Color(0xff92D45E),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(55.r),
+                              bottomRight: Radius.circular(5.r)),
                         ),
-                      )),
-                ],
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 5.w),
+                          child: Icon(
+                            Icons.arrow_forward,
+                            size: 10.sp,
+                            color: Colors.white,
+                          ),
+                        )),
+                  ],
+                ),
               ),
             ),
           ],

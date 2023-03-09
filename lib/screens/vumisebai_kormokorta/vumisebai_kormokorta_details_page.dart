@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -99,9 +100,8 @@ class _VumiSebaiKormokortaDetailsState
                       for (int i = 0; i < user["office_users"].length; i++)
                         i == 0
                             ? SizedBox(
-                                width: ScreenUtil().screenWidth,
                                 child: Card(
-                                  margin: EdgeInsets.only(top: 0, bottom: 5.h),
+                                  margin: EdgeInsets.only(top: 0, bottom: 5.w),
                                   child: Padding(
                                     padding: EdgeInsets.only(
                                       top: 10.h,
@@ -120,20 +120,31 @@ class _VumiSebaiKormokortaDetailsState
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(200.r),
-                                            child: Image.network(
-                                              user['office_users'][i]['photo'],
+                                            child: CachedNetworkImage(
+                                              imageUrl: user['office_users'][i]
+                                                  ['photo'],
+                                              progressIndicatorBuilder:
+                                                  (context, _, __) {
+                                                return Container(
+                                                  child: Center(
+                                                    heightFactor: 90,
+                                                    widthFactor: 90,
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  ),
+                                                );
+                                              },
                                               height: 90,
                                               width: 90,
-                                              fit: BoxFit.fill,
-                                              errorBuilder:
-                                                  (BuildContext context,
-                                                      Object exception,
-                                                      StackTrace? stackTrace) {
-                                                return Image.asset(
-                                                  "images/icons/icon_dc.png",
-                                                  height: 90,
-                                                  width: 90,
-                                                  fit: BoxFit.fill,
+                                              fit: BoxFit.cover,
+                                              errorWidget:
+                                                  (BuildContext context, _,
+                                                      __) {
+                                                print(user['office_users'][i]
+                                                    ['photo']);
+                                                return Icon(
+                                                  FontAwesomeIcons.userLarge,
+                                                  size: 90,
                                                   color: Colors.black,
                                                 );
                                               },
@@ -151,9 +162,7 @@ class _VumiSebaiKormokortaDetailsState
                                                 CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(
-                                                width:
-                                                    ScreenUtil().screenWidth *
-                                                        0.6,
+                                                width: Get.width * 0.6,
                                                 child: Text(
                                                   user["office_users"][i]
                                                       ["name"],
@@ -177,98 +186,63 @@ class _VumiSebaiKormokortaDetailsState
                                                 ),
                                               ),
                                               if ((user["office_users"][i]
-                                                      ["email"])
-                                                  .isNotEmpty)
-                                                SizedBox(
-                                                  height: 30.sp,
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      const Icon(
-                                                        Icons.email,
-                                                        color:
-                                                            AppColor.kDarkGreen,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 5.w,
-                                                      ),
-                                                      SizedBox(
-                                                        width: ScreenUtil()
-                                                                .screenWidth *
-                                                            0.4,
-                                                        child: Text(
-                                                          user["office_users"]
-                                                              [i]["email"],
-                                                          style:
-                                                              customTextStyle(
-                                                                  14.sp,
-                                                                  Colors
-                                                                      .black54,
-                                                                  FontWeight
-                                                                      .w400),
-                                                        ),
-                                                      ),
-                                                      IconButton(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  right: 2.w),
-                                                          alignment: Alignment
-                                                              .topCenter,
-                                                          onPressed: () {
-                                                            _launch(
-                                                                "mailto:${user["office_users"][i]["email"]}");
-                                                          },
-                                                          icon: const Icon(
-                                                            Icons.email,
-                                                            color: Colors.grey,
-                                                          )),
-                                                    ],
-                                                  ),
-                                                ),
-                                              if ((user["office_users"][i]
                                                       ["mobile"])
                                                   .isNotEmpty)
-                                                SizedBox(
-                                                  height: 30.sp,
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      const Icon(
-                                                        FontAwesomeIcons
-                                                            .squarePhone,
-                                                        color:
-                                                            AppColor.kDarkGreen,
+                                                Stack(
+                                                  children: [
+                                                    SizedBox(
+                                                      width: Get.width * 0.62,
+                                                      child: Row(
+                                                        children: [
+                                                          SizedBox(
+                                                            height: 25.sp,
+                                                            child: Row(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                const Icon(
+                                                                  FontAwesomeIcons
+                                                                      .squarePhone,
+                                                                  color: AppColor
+                                                                      .kDarkGreen,
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 6,
+                                                                ),
+                                                                Container(
+                                                                  width:
+                                                                      Get.width *
+                                                                          0.5,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topLeft,
+                                                                  height: 20.sp,
+                                                                  child: Text(
+                                                                    user["office_users"]
+                                                                            [i][
+                                                                        "mobile"],
+                                                                    style: customTextStyle(
+                                                                        14.sp,
+                                                                        Colors
+                                                                            .black54,
+                                                                        FontWeight
+                                                                            .w400),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      SizedBox(
-                                                        width: 5.w,
-                                                      ),
-                                                      Container(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        width: ScreenUtil()
-                                                                .screenWidth *
-                                                            0.4,
-                                                        height: 25.sp,
-                                                        child: Text(
-                                                          user["office_users"]
-                                                              [i]["mobile"],
-                                                          style:
-                                                              customTextStyle(
-                                                                  14.sp,
-                                                                  Colors
-                                                                      .black54,
-                                                                  FontWeight
-                                                                      .w400),
-                                                        ),
-                                                      ),
-                                                      IconButton(
+                                                    ),
+                                                    Positioned(
+                                                      right: -10,
+                                                      child: IconButton(
                                                           padding:
                                                               EdgeInsets.only(
-                                                                  right: 2.w),
+                                                                  right: 0,
+                                                                  bottom: 10),
                                                           alignment: Alignment
                                                               .topCenter,
                                                           onPressed: () {
@@ -280,8 +254,66 @@ class _VumiSebaiKormokortaDetailsState
                                                             color: AppColor
                                                                 .kDarkGreen,
                                                           )),
-                                                    ],
-                                                  ),
+                                                    )
+                                                  ],
+                                                ),
+                                              if ((user["office_users"][i]
+                                                      ["email"])
+                                                  .isNotEmpty)
+                                                Stack(
+                                                  children: [
+                                                    SizedBox(
+                                                      width: Get.width * 0.62,
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          const Icon(
+                                                            Icons.email,
+                                                            color: AppColor
+                                                                .kDarkGreen,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 6,
+                                                          ),
+                                                          Container(
+                                                            width: Get.width *
+                                                                0.48,
+                                                            alignment: Alignment
+                                                                .topLeft,
+                                                            child: Text(
+                                                              user["office_users"]
+                                                                  [i]["email"],
+                                                              style: customTextStyle(
+                                                                  14.sp,
+                                                                  Colors
+                                                                      .black54,
+                                                                  FontWeight
+                                                                      .w400),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Positioned(
+                                                      right: -10,
+                                                      child: IconButton(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: 0),
+                                                          alignment: Alignment
+                                                              .topCenter,
+                                                          onPressed: () {
+                                                            _launch(
+                                                                "mailto:${user["office_users"][i]["email"]}");
+                                                          },
+                                                          icon: const Icon(
+                                                            Icons.email,
+                                                            color: Colors.grey,
+                                                          )),
+                                                    ),
+                                                  ],
                                                 ),
                                             ],
                                           ),
@@ -292,7 +324,6 @@ class _VumiSebaiKormokortaDetailsState
                                 ),
                               )
                             : SizedBox(
-                                width: ScreenUtil().screenWidth,
                                 child: Card(
                                   margin: EdgeInsets.symmetric(vertical: 5.w),
                                   child: Padding(
@@ -313,20 +344,31 @@ class _VumiSebaiKormokortaDetailsState
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(200.r),
-                                            child: Image.network(
-                                              user['office_users'][i]['photo'],
+                                            child: CachedNetworkImage(
+                                              imageUrl: user['office_users'][i]
+                                                  ['photo'],
+                                              progressIndicatorBuilder:
+                                                  (context, _, __) {
+                                                return Container(
+                                                  child: Center(
+                                                    heightFactor: 90,
+                                                    widthFactor: 90,
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  ),
+                                                );
+                                              },
                                               height: 90,
                                               width: 90,
-                                              fit: BoxFit.fill,
-                                              errorBuilder:
-                                                  (BuildContext context,
-                                                      Object exception,
-                                                      StackTrace? stackTrace) {
-                                                return Image.asset(
-                                                  "images/icons/icon_dc.png",
-                                                  height: 90,
-                                                  width: 90,
-                                                  fit: BoxFit.fill,
+                                              fit: BoxFit.cover,
+                                              errorWidget:
+                                                  (BuildContext context, _,
+                                                      __) {
+                                                print(user['office_users'][i]
+                                                    ['photo']);
+                                                return Icon(
+                                                  FontAwesomeIcons.userLarge,
+                                                  size: 90,
                                                   color: Colors.black,
                                                 );
                                               },
@@ -344,9 +386,7 @@ class _VumiSebaiKormokortaDetailsState
                                                 CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(
-                                                width:
-                                                    ScreenUtil().screenWidth *
-                                                        0.6,
+                                                width: Get.width * 0.6,
                                                 child: Text(
                                                   user["office_users"][i]
                                                       ["name"],
@@ -370,98 +410,63 @@ class _VumiSebaiKormokortaDetailsState
                                                 ),
                                               ),
                                               if ((user["office_users"][i]
-                                                      ["email"])
-                                                  .isNotEmpty)
-                                                SizedBox(
-                                                  height: 30.sp,
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      const Icon(
-                                                        Icons.email,
-                                                        color:
-                                                            AppColor.kDarkGreen,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 5.w,
-                                                      ),
-                                                      SizedBox(
-                                                        width: ScreenUtil()
-                                                                .screenWidth *
-                                                            0.4,
-                                                        child: Text(
-                                                          user["office_users"]
-                                                              [i]["email"],
-                                                          style:
-                                                              customTextStyle(
-                                                                  14.sp,
-                                                                  Colors
-                                                                      .black54,
-                                                                  FontWeight
-                                                                      .w400),
-                                                        ),
-                                                      ),
-                                                      IconButton(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  right: 2.w),
-                                                          alignment: Alignment
-                                                              .topCenter,
-                                                          onPressed: () {
-                                                            _launch(
-                                                                "mailto:${user["office_users"][i]["email"]}");
-                                                          },
-                                                          icon: const Icon(
-                                                            Icons.email,
-                                                            color: Colors.grey,
-                                                          )),
-                                                    ],
-                                                  ),
-                                                ),
-                                              if ((user["office_users"][i]
                                                       ["mobile"])
                                                   .isNotEmpty)
-                                                SizedBox(
-                                                  height: 30.sp,
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      const Icon(
-                                                        FontAwesomeIcons
-                                                            .squarePhone,
-                                                        color:
-                                                            AppColor.kDarkGreen,
+                                                Stack(
+                                                  children: [
+                                                    SizedBox(
+                                                      width: Get.width * 0.62,
+                                                      child: Row(
+                                                        children: [
+                                                          SizedBox(
+                                                            height: 25.sp,
+                                                            child: Row(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                const Icon(
+                                                                  FontAwesomeIcons
+                                                                      .squarePhone,
+                                                                  color: AppColor
+                                                                      .kDarkGreen,
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 6,
+                                                                ),
+                                                                Container(
+                                                                  width:
+                                                                      Get.width *
+                                                                          0.5,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topLeft,
+                                                                  height: 20.sp,
+                                                                  child: Text(
+                                                                    user["office_users"]
+                                                                            [i][
+                                                                        "mobile"],
+                                                                    style: customTextStyle(
+                                                                        14.sp,
+                                                                        Colors
+                                                                            .black54,
+                                                                        FontWeight
+                                                                            .w400),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      SizedBox(
-                                                        width: 5.w,
-                                                      ),
-                                                      Container(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        width: ScreenUtil()
-                                                                .screenWidth *
-                                                            0.4,
-                                                        height: 25.sp,
-                                                        child: Text(
-                                                          user["office_users"]
-                                                              [i]["mobile"],
-                                                          style:
-                                                              customTextStyle(
-                                                                  14.sp,
-                                                                  Colors
-                                                                      .black54,
-                                                                  FontWeight
-                                                                      .w400),
-                                                        ),
-                                                      ),
-                                                      IconButton(
+                                                    ),
+                                                    Positioned(
+                                                      right: -10,
+                                                      child: IconButton(
                                                           padding:
                                                               EdgeInsets.only(
-                                                                  right: 2.w),
+                                                                  right: 0,
+                                                                  bottom: 10),
                                                           alignment: Alignment
                                                               .topCenter,
                                                           onPressed: () {
@@ -473,8 +478,66 @@ class _VumiSebaiKormokortaDetailsState
                                                             color: AppColor
                                                                 .kDarkGreen,
                                                           )),
-                                                    ],
-                                                  ),
+                                                    )
+                                                  ],
+                                                ),
+                                              if ((user["office_users"][i]
+                                                      ["email"])
+                                                  .isNotEmpty)
+                                                Stack(
+                                                  children: [
+                                                    SizedBox(
+                                                      width: Get.width * 0.62,
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          const Icon(
+                                                            Icons.email,
+                                                            color: AppColor
+                                                                .kDarkGreen,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 6,
+                                                          ),
+                                                          Container(
+                                                            width: Get.width *
+                                                                0.48,
+                                                            alignment: Alignment
+                                                                .topLeft,
+                                                            child: Text(
+                                                              user["office_users"]
+                                                                  [i]["email"],
+                                                              style: customTextStyle(
+                                                                  14.sp,
+                                                                  Colors
+                                                                      .black54,
+                                                                  FontWeight
+                                                                      .w400),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Positioned(
+                                                      right: -10,
+                                                      child: IconButton(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: 0),
+                                                          alignment: Alignment
+                                                              .topCenter,
+                                                          onPressed: () {
+                                                            _launch(
+                                                                "mailto:${user["office_users"][i]["email"]}");
+                                                          },
+                                                          icon: const Icon(
+                                                            Icons.email,
+                                                            color: Colors.grey,
+                                                          )),
+                                                    ),
+                                                  ],
                                                 ),
                                             ],
                                           ),

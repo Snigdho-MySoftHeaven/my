@@ -2,10 +2,10 @@ name: vumi
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment:
-  sdk: ">=2.19.2 <3.0.0"
+environment: 
+  sdk: '>=2.19.2 <3.0.0'
 
-dependencies:
+dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
   flutter_html: 2.2.1
@@ -27,21 +27,22 @@ dependencies:
   dropdown_button2: 2.0.0
   http: 0.13.5
   shared_preferences: 2.0.18
-  flutter:
+  cached_network_image: 3.2.3
+  flutter: 
     sdk: flutter
-  flutter_localizations:
+  flutter_localizations: 
     sdk: flutter
 
-dev_dependencies:
+dev_dependencies: 
   flutter_lints: ^2.0.0
   flutter_launcher_icons: 0.11.0
   flutter_app_name: 0.1.1
   lints: 2.0.1
-  flutter_test:
+  flutter_test: 
     sdk: flutter
 
-flutter:
-  assets:
+flutter: 
+  assets: 
     - assets/images/
     - assets/locates/bn_BD.json
     - assets/locates/en_US.json
@@ -49,27 +50,28 @@ flutter:
     - images/
     - images/process_map/
     - images/icons/
-  fonts:
+  fonts: 
     - family: Roboto
-      fonts:
+      fonts: 
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
     - family: kalpurush
-      fonts:
+      fonts: 
         - asset: assets/fonts/kalpurush/kalpurush.ttf
     - family: Nikosh
-      fonts:
+      fonts: 
         - asset: assets/fonts/kalpurush/Nikosh.ttf
   generate: true
   uses-material-design: true
 
-flutter_icons:
+flutter_icons: 
   android: launcher_icon
   image_path: assets/images/icon.png
-  windows:
+  windows: 
     image_path: assets/images/icon.png
     generate: true
     icon_size: 48
   ios: true
 
-flutter_app_name:
+flutter_app_name: 
   name: ভূমিসেবা
+
