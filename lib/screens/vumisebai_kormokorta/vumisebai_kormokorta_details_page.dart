@@ -101,7 +101,7 @@ class _VumiSebaiKormokortaDetailsState
                         i == 0
                             ? SizedBox(
                                 child: Card(
-                                  margin: EdgeInsets.only(top: 0, bottom: 5.w),
+                                  margin: EdgeInsets.only(bottom: 5.w),
                                   child: Padding(
                                     padding: EdgeInsets.only(
                                       top: 10.h,
@@ -120,34 +120,43 @@ class _VumiSebaiKormokortaDetailsState
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(200.r),
-                                            child: CachedNetworkImage(
-                                              imageUrl: user['office_users'][i]
-                                                  ['photo'],
-                                              progressIndicatorBuilder:
-                                                  (context, _, __) {
-                                                return Container(
-                                                  child: Center(
-                                                    heightFactor: 90,
-                                                    widthFactor: 90,
-                                                    child:
-                                                        CircularProgressIndicator(),
-                                                  ),
-                                                );
-                                              },
-                                              height: 90,
-                                              width: 90,
-                                              fit: BoxFit.cover,
-                                              errorWidget:
-                                                  (BuildContext context, _,
-                                                      __) {
-                                                print(user['office_users'][i]
-                                                    ['photo']);
-                                                return Icon(
-                                                  FontAwesomeIcons.userLarge,
-                                                  size: 90,
-                                                  color: Colors.black,
-                                                );
-                                              },
+                                            child: ClipRect(
+                                              clipBehavior: Clip.antiAlias,
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                widthFactor: .85,
+                                                heightFactor: .85,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: user['office_users']
+                                                      [i]['photo'],
+                                                  progressIndicatorBuilder:
+                                                      (context, _, __) {
+                                                    return Container(
+                                                      child: Center(
+                                                        heightFactor: 110,
+                                                        widthFactor: 105,
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  height: 110,
+                                                  width: 105,
+                                                  fit: BoxFit.fill,
+                                                  errorWidget:
+                                                      (BuildContext context, _,
+                                                          __) {
+                                                    print(user['office_users']
+                                                        [i]['photo']);
+                                                    return Icon(
+                                                      FontAwesomeIcons
+                                                          .userLarge,
+                                                      size: 90,
+                                                      color: Colors.black,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -344,34 +353,43 @@ class _VumiSebaiKormokortaDetailsState
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(200.r),
-                                            child: CachedNetworkImage(
-                                              imageUrl: user['office_users'][i]
-                                                  ['photo'],
-                                              progressIndicatorBuilder:
-                                                  (context, _, __) {
-                                                return Container(
-                                                  child: Center(
-                                                    heightFactor: 90,
-                                                    widthFactor: 90,
-                                                    child:
-                                                        CircularProgressIndicator(),
-                                                  ),
-                                                );
-                                              },
-                                              height: 90,
-                                              width: 90,
-                                              fit: BoxFit.cover,
-                                              errorWidget:
-                                                  (BuildContext context, _,
-                                                      __) {
-                                                print(user['office_users'][i]
-                                                    ['photo']);
-                                                return Icon(
-                                                  FontAwesomeIcons.userLarge,
-                                                  size: 90,
-                                                  color: Colors.black,
-                                                );
-                                              },
+                                            child: ClipRect(
+                                              clipBehavior: Clip.antiAlias,
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                widthFactor: .85,
+                                                heightFactor: .85,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: user['office_users']
+                                                      [i]['photo'],
+                                                  progressIndicatorBuilder:
+                                                      (context, _, __) {
+                                                    return Container(
+                                                      child: Center(
+                                                        heightFactor: 110,
+                                                        widthFactor: 105,
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  height: 110,
+                                                  width: 105,
+                                                  fit: BoxFit.fill,
+                                                  errorWidget:
+                                                      (BuildContext context, _,
+                                                          __) {
+                                                    print(user['office_users']
+                                                        [i]['photo']);
+                                                    return Icon(
+                                                      FontAwesomeIcons
+                                                          .userLarge,
+                                                      size: 90,
+                                                      color: Colors.black,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
