@@ -10,7 +10,7 @@ class QrcoodeView extends GetView<QrcoodeController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff348739),
-        title: Text('Qr Code'.tr),
+        title: Text("দাখিলা".tr),
         centerTitle: true,
       ),
       body: Center(

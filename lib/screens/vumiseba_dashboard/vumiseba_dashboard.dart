@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -84,11 +85,34 @@ class _VumiSebaDashboardState extends State<VumiSebaDashboard> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(15.w),
+                      width: Get.width,
                       color: AppColor.kDarkGreen,
-                      child: Text("সেবা গ্রহণ করতে রেজিস্টার করুন".tr,
-                          style: customTextStyle(
-                              15.sp, AppColor.kWhite, FontWeight.w500)),
+                      child: CarouselSlider(
+                        options: CarouselOptions(
+                          height: 30.sp,
+                          enableInfiniteScroll: true,
+                          autoPlayInterval: Duration.zero,
+                          autoPlayAnimationDuration: Duration(seconds: 5),
+                          autoPlayCurve: Curves.linear,
+                          autoPlay: true,
+                          scrollDirection: Axis.horizontal,
+                        ),
+                        items: ["সেবা গ্রহণ করতে রেজিস্টার করুন".tr].map((i) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return Container(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  i,
+                                  textAlign: TextAlign.start,
+                                  style: customTextStyle(
+                                      15.sp, AppColor.kWhite, FontWeight.w500),
+                                ),
+                              );
+                            },
+                          );
+                        }).toList(),
+                      ),
                     ),
                     SizedBox(
                       height: 14.h,

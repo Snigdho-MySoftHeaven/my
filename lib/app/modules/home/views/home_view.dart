@@ -17,9 +17,7 @@ class HomeView extends GetView<HomeController> {
         padding: EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            bodyContentView()
-          ],
+          children: [bodyContentView()],
         ),
       ),
     );
@@ -49,18 +47,6 @@ class bodyContentView extends StatelessWidget {
           text: 'বিবিধ ',
           onTap: () {
             Get.toNamed('/extra');
-          },
-        ),
-        customCardView(
-          text: 'ভূমি পরিমাপ ক্যালকুলেটর',
-          onTap: () {
-            Get.toNamed('/calculation');
-          },
-        ),
-        customCardView(
-          text: 'Qr Code',
-          onTap: () {
-            Get.toNamed('/qr_code');
           },
         ),
         Padding(
